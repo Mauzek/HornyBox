@@ -1,0 +1,55 @@
+// Цвета фона и текста
+$page-background-color: #111111;
+$text-color: #ffffff;
+$text-neutral: #8e8e8e;
+
+// Нейтральные цвета
+$neutral-color: #525252;
+$neutral-color-dark: #191919;
+$neutral-color-dark-2: #1b1b1b;
+
+// Зелёные цвета
+$green-color: #c8ff00;
+$green-color-dark: #6f8e00;
+$green-color-opacity: #c8ff00b0;
+
+// Оранжевые цвета
+$orange-color: #fed647;
+$orange-color-dark: #a3892d;
+$orange-color-opacity: #f7fb4621;
+
+// Кнопки
+$button-primary-text: #111;
+$button-card-hover-text: #5b7400;
+$button-secondary-text-hover: $green-color; 
+$button-secondary-pressed-text: #baed00;
+$button-primary-background: $green-color; 
+$button-primary-background-hover: #8db400;
+$button-secondary-background: #1a1a1a;
+$button-disabled-text: #a3a3a3;
+$button-disabled-background: $neutral-color-dark-2; 
+$button-red-initial: #d0293d;
+$button-red-hover: #da2b40;
+$button-red-pressed: #bc2537;
+
+// Бейджи
+$badge-primary-text: #111;
+$badge-neutral-text: #8db400;
+$badge-secondary-text: #a3892d;
+$badge-primary: #8db400;
+$badge-secondary: #f7fb4669;
+$badge-sale: #da2b4030;
+$badge-sale-text: #cb283c;
+
+// Чекбоксы
+$checkbox-color: #5342cd;
+$checkbox-colors-hover: #99c400;
+$checkbox-colors-active: #5342cd;
+
+// Разделители
+$divider-based: #d1d1d1;
+
+//Шрифты
+$title-text: "Unbounded", sans-serif;
+$body-text: "IBMPlexSans", sans-serif;
+$body-text-italic: "IBMPlexSansItalic", sans-serif;

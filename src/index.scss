@@ -1,0 +1,96 @@
+@use "./styles/variables" as vars;
+
+@font-face {
+    font-family: "IBMPlexSans";
+    src: url("./assets/fonts/IBMPlexSans-VariableFont_wdth,wght.ttf") format("truetype");
+    font-weight: 100 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "IBMPlexSansItalic";
+    src: url("./assets/fonts/IBMPlexSans-Italic-VariableFont_wdth,wght.ttf") format("truetype");
+    font-weight: 100 700;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Unbounded";
+    src: url("./assets/fonts/Unbounded-VariableFont_wght.ttf") format("truetype");
+    font-weight: 100 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+h1, h2, h3 {
+  font-family: vars.$title-text;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  font-family: vars.$body-text;
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: vars.$page-background-color;
+  color: vars.$text-color;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: vars.$button-primary-background;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+button:active {
+  background-color: vars.$button-primary-background-hover;
+  transform: scale(0.98); 
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
