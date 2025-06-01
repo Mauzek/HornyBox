@@ -1,38 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import { getAssets } from './api/api-utils';
+import { useGetAssetsQuery} from './store';
+import { LazyImage } from './components/LazyImage/LazyImage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  getAssets();
-
+const { data, error, isLoading } = useGetAssetsQuery();
+  if (isLoading) return <div>Загрузка...</div>;
+  if (error) return <div>Ошибка загрузки</div>;
+  console.log(data);
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <h1>Баннеры:</h1>
+      <ul>
+        {data?.banners?.map((banner) => (
+          <li key={banner.id}>
+            <LazyImage src={banner.imagePc} alt={banner.title}/>
+            <h2>{banner.title}</h2>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 export default App
