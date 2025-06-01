@@ -3,6 +3,7 @@ export interface User {
   username: string;
   email: string;
   image: string;
+  referal: number | null;
 }
 
 export interface UserData {
