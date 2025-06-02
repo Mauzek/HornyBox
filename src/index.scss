@@ -27,6 +27,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  scroll-behavior: smooth;
 }
 
 h1, h2, h3 {
@@ -55,14 +56,18 @@ body {
   color: vars.$text-color;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border-radius: 10px;
+  border: none;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -70,16 +75,6 @@ button {
   background-color: vars.$button-primary-background;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-
-button:active {
-  background-color: vars.$button-primary-background-hover;
-  transform: scale(0.98); 
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 @media (prefers-color-scheme: light) {

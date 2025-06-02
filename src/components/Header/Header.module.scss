@@ -1,0 +1,138 @@
+@use "../../styles/variables" as vars;
+
+.header {
+  padding: 10px 25px;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: #111;
+  --header-hidden: 0;
+  transform: translateY(calc(var(--header-hidden) * -20px));
+  transition: transform 0.15s ease;
+
+  &__nav {
+    opacity: calc(1 - var(--header-hidden));
+    transition: opacity 0.15s ease;
+    overflow: hidden;
+    pointer-events: calc(1 - var(--header-hidden));
+  }
+
+  &__list {
+    display: flex;
+    gap: 15px;
+    list-style-type: none;
+    line-height: 130%;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    font-weight: 500;
+    font-size: clamp(13px, .7465rem + .2817vw, 16px);
+    transform: scaleY(1.03);
+
+    a {
+      color: vars.$button-disabled-text;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+
+  &__logo {
+    text-decoration: none;
+  }
+
+  &__image {
+    width: clamp(96px, 20vw, 210px);
+    height: 33px;
+    display: block;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 20px
+  }
+
+  &__order_wrapper {
+    position: relative;
+  }
+
+  &__button {
+    height: 40px;
+    font-weight: 500;
+    padding: 5px 20px;
+    color: vars.$text-color;
+    background-color: vars.$button-background-neutral;
+    cursor: pointer;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    transition: background-color, outline-color;
+    transition-duration: .15s;
+    border: none;
+    border-radius: 8px;
+
+    &:hover {
+      background-color: vars.$buttons-button-neutral-hover;
+    }
+
+    &:focus,
+    &:active {
+      outline-color: vars.$green-color;
+    }
+  }
+
+  &__profile {
+    text-decoration: none;
+    outline: none;
+  }
+
+  &__avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 50%;
+    display: block;
+  }
+
+  &__auth {
+    display: flex;
+    align-items: center;
+    color: vars.$text-color;
+    text-decoration: none;
+    outline: none;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: vars.$button-background-neutral;
+    transition: background-color 0.15s;
+
+    &:hover {
+      background-color: vars.$buttons-button-neutral-hover;
+    }
+  }
+
+
+  &--scrolled {
+    transform: translateY(-20px);
+
+    .header__nav {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}

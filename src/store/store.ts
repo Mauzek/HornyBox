@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { assetsApi } from "./apiQuerys";
+import { assetsApi } from "./apiQueries";
 import { userSlice } from "./slices";
 
 export const store = configureStore({
