@@ -12,9 +12,15 @@ import { useScrollDirection } from "../../hooks/useScrollDirection";
 const Header = memo(() => {
   //   const user = useSelector((state: RootState) => state.user.user);
   const user = true;
-  const { isVisible, toggle } = usePopup();
+  const { isVisible, toggle, hide } = usePopup();
   const { headerRef } = useScrollDirection(50);
-  console.log("render");
+  console.log('render')
+  const handleToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggle();
+  };
+
   return (
     <header ref={headerRef} className={styles.header}>
       <nav className={styles.header__nav}>
@@ -37,10 +43,14 @@ const Header = memo(() => {
           {user ? (
             <>
               <div className={styles.header__order_wrapper}>
-                <button className={styles.header__button} onClick={toggle}>
+                <button 
+                  className={`${styles.header__button} ${isVisible ? styles['header__button--active'] : ''}`}
+                  onClick={handleToggle}
+                  data-popup-toggle
+                >
                   История заказов
                 </button>
-                <OrderHistory onClose={toggle} isOpen={isVisible} />
+                <OrderHistory onClose={hide} isOpen={isVisible} />
               </div>
               <Link to="/profile" className={styles.header__profile}>
                 <img
@@ -61,6 +71,6 @@ const Header = memo(() => {
   );
 });
 
-Header.displayName = "Header";
+Header.displayName = 'Header';
 
 export { Header };

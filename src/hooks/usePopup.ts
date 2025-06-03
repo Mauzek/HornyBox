@@ -11,7 +11,10 @@ export const usePopup = (initialState = false) => {
     setIsVisible(false);
   }, []);
   
-  const toggle = useCallback(() => {
+  const toggle = useCallback((e?: React.MouseEvent) => {
+    if (e) {
+      e.stopPropagation();
+    }
     setIsVisible(prev => !prev);
   }, []);
   

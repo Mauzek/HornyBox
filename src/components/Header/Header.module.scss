@@ -75,18 +75,17 @@
     background-color: vars.$button-background-neutral;
     cursor: pointer;
     outline: 2px solid transparent;
-    outline-offset: 2px;
+    outline-offset: 0px;
     transition: background-color, outline-color;
     transition-duration: .15s;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
 
     &:hover {
       background-color: vars.$buttons-button-neutral-hover;
     }
 
-    &:focus,
-    &:active {
+    &--active {
       outline-color: vars.$green-color;
     }
   }
@@ -108,17 +107,14 @@
   &__auth {
     display: flex;
     align-items: center;
+    justify-content: center;
     color: vars.$text-color;
     text-decoration: none;
     outline: none;
-  }
-
-  &__icon {
     width: 40px;
     height: 40px;
-    padding: 8px;
-    border-radius: 50%;
     background-color: vars.$button-background-neutral;
+    border-radius: 10px;
     transition: background-color 0.15s;
 
     &:hover {
@@ -126,6 +122,10 @@
     }
   }
 
+  &__icon {
+    width: 24px;
+    height: 24px;
+  }
 
   &--scrolled {
     transform: translateY(-20px);
@@ -133,6 +133,27 @@
     .header__nav {
       opacity: 0;
       pointer-events: none;
+    }
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .header{
+
+    &__content{
+      justify-content: center;
+    }
+
+    &__image{
+      width: 227px;
+    }
+
+    &__nav{
+      display: none;
+    }
+
+    &__actions{
+      display: none;
     }
   }
 }

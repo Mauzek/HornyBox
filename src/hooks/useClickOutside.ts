@@ -10,13 +10,24 @@ export const useClickOutside = (
     if (!enabled || !ref) return;
 
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+      const target = event.target as Node;
+      
+      const toggleButton = document.querySelector('[data-popup-toggle]');
+      if (toggleButton && toggleButton.contains(target)) {
+        return;
+      }
+
+      if (ref.current && !ref.current.contains(target)) {
         callback();
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
+    const timeoutId = setTimeout(() => {
+      document.addEventListener("mousedown", handleClickOutside);
+    }, 0);
+
     return () => {
+      clearTimeout(timeoutId);
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref, callback, enabled]);
