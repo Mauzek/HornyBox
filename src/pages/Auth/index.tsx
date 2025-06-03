@@ -1,9 +1,8 @@
 import React from 'react'
 
-const AuthPage = () => {
+export const AuthPage = () => {
+    document.title = "Вход - HornyBox"
   return (
     <div>AuthPage</div>
   )
 }
-
-export default AuthPage

@@ -1,9 +1,8 @@
 import React from 'react'
 
-const ContentPage = () => {
+export const ContentPage = () => {
+    document.title = "Гайды, статьи, игровые новости на HornyBox"
   return (
     <div>ContentPage</div>
   )
 }
-
-export default ContentPage

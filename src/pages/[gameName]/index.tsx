@@ -1,9 +1,9 @@
-import React from 'react'
+import { useParams } from "react-router-dom";
 
-const GamePage = () => {
+export const GamePage = () => {
+  const {gameName} = useParams();  
+  document.title = `Донат в ${gameName}`
   return (
     <div>GamePage</div>
   )
 }
-
-export default GamePage

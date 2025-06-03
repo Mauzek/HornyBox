@@ -1,31 +1,47 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components";
+import {
+  HomePage,
+  AuthPage,
+  ProfilePage,
+  VideoPage,
+  ContentPage,
+  FAQPage,
+  AboutPage,
+  PoliticsPage,
+  GamePage,
+  GameCategoryPage,
+  NotFoundPage,
+} from "./pages";
 
 function App() {
   return (
     <Layout>
       <Routes>
         {/* Главная страница */}
-        <Route index path="/" element={<div>Home</div>} />
+        <Route path="/" element={<HomePage />} />
 
         {/* Страницы авторизации и профиля */}
-        <Route path="/auth" element={<div>Auth</div>} />
-        <Route path="/profile" element={<div>Profile</div>} />
-
-        {/* Динамические маршруты для игр */}
-        <Route path="/:gameName" element={<div>Game</div>} />
-        <Route path="/:gameName/:category" element={<div>Game category</div>} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
 
         {/* Дополнительные страницы */}
-        <Route path="/videos" element={<div>Videos</div>} />
-        <Route path="/content" element={<div>Content</div>} />
-        <Route path="/faq" element={<div>FAQ</div>} />
-        <Route path="/about" element={<div>About</div>} />
-        <Route path="/politics" element={<div>Politics</div>} />
+        <Route path="/videos" element={<VideoPage />} />
+        <Route path="/content" element={<ContentPage />} />
+        <Route path="/faq" element={<FAQPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/politics" element={<PoliticsPage />} />
+
+        {/* Динамические маршруты для игр */}
+        <Route path="/game/:gameName" element={<GamePage />} />
+        <Route
+          path="/game/:gameName/:category"
+          element={<GameCategoryPage />}
+        />
 
         {/* Страница 404 */}
-        <Route path="*" element={<div>404 - Page not found</div>} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
   );

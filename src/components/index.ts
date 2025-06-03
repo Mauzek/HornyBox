@@ -1,2 +1,3 @@
-export * from './Layout/Layout';;
-export * from './Header/Header';
+export * from './Layout';;
+export * from './Header';
+export * from './TabBar';

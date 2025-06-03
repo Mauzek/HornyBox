@@ -1,0 +1,86 @@
+@use '../../styles/variables' as vars;
+
+.tabbar {
+    display: flex;
+    justify-content: center; // Центрирование элементов относительно контейнера
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0 15px; // Внутренний отступ
+    background-color: vars.$neutral-color-2;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+
+    &__list {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+        height: 52.91px;
+
+        &--active {
+            color: #007bff; // Цвет активного элемента
+        }
+
+        // Динамический margin через CSS-переменную
+        margin: 0 var(--item-margin);
+
+        a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+
+    &__icon {
+        width: 24px;
+        height: 24px;
+        filter: invert(100%);
+    }
+
+    &__avatar {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    &__label {
+        font-size: 13px;
+        line-height: 130%;
+        color: #fffffc;
+        text-align: center;
+    }
+
+    &__debug {
+        position: absolute;
+        top: -20px;
+        left: 0;
+        right: 0;
+        background: red;
+        color: white;
+        text-align: center;
+        font-size: 10px;
+        padding: 2px;
+        z-index: 1001;
+    }
+
+    @media (min-width: 769px) {
+        display: none;
+    }
+
+}

@@ -14,7 +14,7 @@ const Header = memo(() => {
   const user = true;
   const { isVisible, toggle, hide } = usePopup();
   const { headerRef } = useScrollDirection(50);
-  console.log('render')
+  console.log("render");
   const handleToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -25,8 +25,12 @@ const Header = memo(() => {
     <header ref={headerRef} className={styles.header}>
       <nav className={styles.header__nav}>
         <ul className={styles.header__list}>
-          <li className={styles.header__item}><Link to="/about">О нас (Любимчики)</Link></li>
-          <li className={styles.header__item}><Link to="/faq">FAQ</Link></li>
+          <li className={styles.header__item}>
+            <Link to="/about">О нас (Любимчики)</Link>
+          </li>
+          <li className={styles.header__item}>
+            <Link to="/faq">FAQ</Link>
+          </li>
         </ul>
       </nav>
 
@@ -43,8 +47,10 @@ const Header = memo(() => {
           {user ? (
             <>
               <div className={styles.header__order_wrapper}>
-                <button 
-                  className={`${styles.header__button} ${isVisible ? styles['header__button--active'] : ''}`}
+                <button
+                  className={`${styles.header__button} ${
+                    isVisible ? styles["header__button--active"] : ""
+                  }`}
                   onClick={handleToggle}
                   data-popup-toggle
                 >
@@ -71,6 +77,6 @@ const Header = memo(() => {
   );
 });
 
-Header.displayName = 'Header';
+Header.displayName = "Header";
 
 export { Header };

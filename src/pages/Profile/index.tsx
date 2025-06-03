@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ProfilePage = () => {
+export const ProfilePage = () => {
+    document.title = "Личный кабинет - HornyBox"
   return (
     <div>ProfilePage</div>
   )
 }
 
-export default ProfilePage
