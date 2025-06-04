@@ -6,15 +6,13 @@ import { memo } from "react";
 // import type { RootState } from "../../store";
 import { OrderHistory } from "../Popups";
 import styles from "./Header.module.scss";
-import { usePopup } from "../../hooks";
-import { useScrollDirection } from "../../hooks/useScrollDirection";
+import { usePopup, useScrollDirection } from "../../hooks";
 
 const Header = memo(() => {
   //   const user = useSelector((state: RootState) => state.user.user);
   const user = true;
   const { isVisible, toggle, hide } = usePopup();
   const { headerRef } = useScrollDirection(50);
-  console.log("render");
   const handleToggle = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();

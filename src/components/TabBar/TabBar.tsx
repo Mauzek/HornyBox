@@ -1,21 +1,55 @@
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { LuUserRound } from "react-icons/lu";
+import { LuCircleUser } from "react-icons/lu";
 import { icons } from "../../assets";
 import styles from "./TabBar.module.scss";
+import type { Tab } from "./types";
+import { usePopup } from "../../hooks";
+import { ActionMenu } from "../Popups";
 
 export const TabBar = () => {
   const location = useLocation();
-  const user = true;
-  const cartNotEmpty = true;
+  const { isVisible, toggle, hide } = usePopup();
+  const user: boolean = true;
+  const cart: { count: number } | null = { count: 1 };
 
-  const parseGameName = (pathname: string) => {
+  const handleToggle = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    toggle();
+  };
+
+  const parseGameName = (pathname: string): string | null => {
     const gameMatch = pathname.match(/^\/game\/([^/]+)/);
     return gameMatch ? gameMatch[1] : null;
   };
-  const gameName = parseGameName(location.pathname);
-  console.log(gameName);
 
-  const tabs = [
+  const gameName: string | null = parseGameName(location.pathname);
+
+  const renderIcon = (
+    icon: React.ReactNode | string,
+    label: string
+  ): React.ReactNode => {
+    if (typeof icon === "string") {
+      return <img className={styles.tabbar__icon} src={icon} alt={label} />;
+    }
+    return icon;
+  };
+
+  const renderTabContent = (tab: Tab): React.ReactNode => (
+    <>
+      {renderIcon(tab.icon, tab.label)}
+      <span
+        className={`${styles.tabbar__label} ${
+          tab.id === "cart" ? styles["tabbar__label--cart"] : ""
+        }`}
+      >
+        {tab.label}
+      </span>
+    </>
+  );
+
+  const tabs: Tab[] = [
     {
       id: "catalog",
       path: "/",
@@ -32,15 +66,16 @@ export const TabBar = () => {
           alt="Avatar"
         />
       ) : (
-        <LuUserRound className={styles.tabbar__icon} />
+        <LuCircleUser className={styles.tabbar__icon} />
       ),
+      label: user ? "" : "Кабинет",
     },
     {
       id: "cart",
       path: "",
       icon: icons.cart,
-      label: "1 шт",
-      show: !!gameName && cartNotEmpty,
+      label: `${cart.count} шт`,
+      show: !!gameName && !!cart,
     },
     {
       id: "more",
@@ -50,25 +85,14 @@ export const TabBar = () => {
     },
   ];
 
-  const visibleTabs = tabs.filter((tab) => tab.show !== false);
-
-  const itemCount = visibleTabs.length;
-  let itemMargin = "0";
-
-  if (itemCount === 3) {
-    itemMargin = "48.25px";
-  } else if (itemCount === 4) {
-    itemMargin = "32.7px";
-  }
+  const visibleTabs: Tab[] = tabs.filter((tab) => tab.show !== false);
 
   return (
-    <nav
-      className={styles.tabbar}
-      style={{ "--item-margin": itemMargin } as React.CSSProperties}
-    >
+    <nav className={styles.tabbar}>
       <ul className={styles.tabbar__list}>
-        {visibleTabs.map((tab) => {
-          const isActive = location.pathname === tab.path;
+        {visibleTabs.map((tab: Tab) => {
+          const isActive: boolean = location.pathname === tab.path;
+          const tabContent: React.ReactNode = renderTabContent(tab);
 
           return (
             <li
@@ -78,36 +102,20 @@ export const TabBar = () => {
               }`}
             >
               {tab.path ? (
-                <Link to={tab.path}>
-                  {tab.icon && typeof tab.icon === "string" ? (
-                    <img
-                      className={styles.tabbar__icon}
-                      src={tab.icon}
-                      alt={tab.label}
-                    />
-                  ) : (
-                    tab.icon
-                  )}
-                  <span className={styles.tabbar__label}>{tab.label}</span>
-                </Link>
+                <Link to={tab.path}>{tabContent}</Link>
               ) : (
-                <>
-                  {tab.icon && typeof tab.icon === "string" ? (
-                    <img
-                      className={styles.tabbar__icon}
-                      src={tab.icon}
-                      alt={tab.label}
-                    />
-                  ) : (
-                    tab.icon
-                  )}
-                  <span className={styles.tabbar__label}>{tab.label}</span>
-                </>
+                <button
+                  className={styles.tabbar__button}
+                  onClick={handleToggle}
+                >
+                  {tabContent}
+                </button>
               )}
             </li>
           );
         })}
       </ul>
+      <ActionMenu isOpen={isVisible} onClose={hide} />
     </nav>
   );
 };

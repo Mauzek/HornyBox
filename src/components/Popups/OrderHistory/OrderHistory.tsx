@@ -9,7 +9,6 @@ export const OrderHistory: React.FC<OrderHistoryProps> = ({
   onClose,
 }) => {
   const popupRef = useRef<HTMLDivElement>(null);
-
   useClickOutside(popupRef, onClose, isOpen);
   useEscapeKey(onClose, isOpen);
 

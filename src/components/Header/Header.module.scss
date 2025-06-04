@@ -136,6 +136,16 @@
     }
   }
 }
+@media screen and (max-width: 768px) {
+  .header{
+    padding: 10px 15px;
+
+    &__list{
+          line-height: 115%;
+    }
+  }
+}
+
 
 @media screen and (max-width: 639px) {
   .header{
