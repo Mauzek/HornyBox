@@ -11,10 +11,10 @@
   height: 245px;
   min-width: 200px;
   z-index: 1000;
-
   transform: scale(0.8);
   opacity: 0;
-  transition: transform 0.1s ease, opacity 0.1s ease;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  transform-origin: top right;
 
   &__title {
     margin: 0 20px;
@@ -46,10 +46,12 @@
   &--visible {
     transform: scale(1);
     opacity: 1;
+    pointer-events: auto;
   }
 
   &--hidden {
     transform: scale(0.8);
     opacity: 0;
+    pointer-events: none; /* Отключаем взаимодействие во время анимации скрытия */
   }
 }

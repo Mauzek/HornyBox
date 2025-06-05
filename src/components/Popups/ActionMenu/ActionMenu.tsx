@@ -1,26 +1,41 @@
-import React from "react";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   LuUsersRound,
-  LuFileQuestion ,
-  LuMessageCircleQuestion ,
-  LuHistory  ,
+  LuFileQuestion,
+  LuMessageCircleQuestion,
+  LuHistory,
 } from "react-icons/lu";
 import { useClickOutside, useEscapeKey } from "../../../hooks";
 import type { ActionMenuProps } from "./types";
 import styles from "./ActionMenu.module.scss";
 
-export const ActionMenu: React.FC<ActionMenuProps> = ({ isOpen, onClose }) => {
+export const ActionMenu: React.FC<ActionMenuProps> = ({
+  isOpen,
+  onClose,
+  toggleButtonRef,
+  isGamePage,
+}) => {
   const popupRef = useRef<HTMLDivElement>(null);
-
-  useClickOutside(popupRef, onClose, isOpen);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  useClickOutside(popupRef, onClose, isOpen, toggleButtonRef);
   useEscapeKey(onClose, isOpen);
-    console.log('render')
+  // console.log("render ActionMenu");
+
   useEffect(() => {
-    if (!isOpen) {
-      const timer = setTimeout(() => {}, 100);
-      return () => clearTimeout(timer);
+    if (isOpen) {
+      setIsMounted(true);
+      const showTimer = setTimeout(() => {
+        setIsVisible(true);
+      }, 10);
+      return () => clearTimeout(showTimer);
+    } else {
+      setIsVisible(false);
+      const hideTimer = setTimeout(() => {
+        setIsMounted(false);
+      }, 300);
+      return () => clearTimeout(hideTimer);
     }
   }, [isOpen]);
 
@@ -28,18 +43,31 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ isOpen, onClose }) => {
     e.stopPropagation();
   };
 
+  const handleHistoryClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("История clicked");
+    onClose();
+  };
+
+  const handleLinkClick = () => {
+    onClose();
+  };
+
+  if (!isMounted) return null;
+
   return (
     <div
       ref={popupRef}
       className={`${styles.popup} ${
-        isOpen ? styles["popup--visible"] : styles["popup--hidden"]
-      }`}
+        isVisible ? styles["popup--visible"] : styles["popup--hidden"]
+      } ${isGamePage ? styles["popup--game-page"] : ""}`}
       onClick={handleContentClick}
       role="dialog"
     >
       <ul className={styles.popup__list}>
         <li className={styles.popup__item}>
-          <Link to="/about">
+          <Link to="/about" onClick={handleLinkClick}>
             <span className={styles.popup__icon}>
               <LuUsersRound />
             </span>
@@ -47,7 +75,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ isOpen, onClose }) => {
           </Link>
         </li>
         <li className={styles.popup__item}>
-          <Link to="/faq">
+          <Link to="/faq" onClick={handleLinkClick}>
             <span className={styles.popup__icon}>
               <LuFileQuestion />
             </span>
@@ -59,6 +87,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ isOpen, onClose }) => {
             href="https://t.me/HornySupport_bot"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleLinkClick}
           >
             <span className={styles.popup__icon}>
               <LuMessageCircleQuestion />
@@ -67,7 +96,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({ isOpen, onClose }) => {
           </a>
         </li>
         <li className={styles.popup__item}>
-          <button className={styles.popup__item}>
+          <button onClick={handleHistoryClick}>
             <span className={styles.popup__icon}>
               <LuHistory />
             </span>

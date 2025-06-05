@@ -1,18 +1,41 @@
 @use '../../../styles/variables' as vars;
 
 .popup {
-    display: flex;
-    align-items: flex-end;
-    position: fixed;
-    min-width: max-content;
+    position: absolute;
+    bottom: calc(100% + 6px);
     z-index: 50;
     outline: none;
     background-color: vars.$neutral-color-2;
     border-radius: 10px;
-    animation: fadeIn 0.1s ease-out;
-    right: 74px;
-    bottom: 57px;
     padding: 5px;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+    transform-origin: bottom;
+
+    &--game-page {
+        right: calc(10%);
+
+        @media screen and (max-width: 768px) {
+            right: calc(6%);
+        }
+
+        @media screen and (max-width: 576px) {
+            right: calc(1%);
+        }
+    }
+
+    &:not(.popup--game-page) {
+        @media screen and (max-width: 768px) {
+            right: calc(10%);
+        }
+
+        @media screen and (max-width: 576px) {
+            right: calc(5%);
+        }
+
+        @media screen and (max-width: 375px) {
+            right: calc(3%);
+        }
+    }
 
     &__list {
         display: flex;
@@ -31,12 +54,21 @@
         overflow: hidden;
         list-style: none;
 
-        a {
+        a,
+        button {
             display: flex;
             align-items: center;
             flex-direction: row;
             color: #ffffffcc;
-            gap: 10px
+            padding: 0;
+            gap: 10px;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: inherit;
+            cursor: pointer;
+            text-decoration: none;
         }
 
         &:hover {
@@ -83,21 +115,12 @@
     &--visible {
         transform: scale(1);
         opacity: 1;
+        pointer-events: auto;
     }
 
     &--hidden {
         transform: scale(0.8);
         opacity: 0;
-    }
-
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
+        pointer-events: none;
     }
 }

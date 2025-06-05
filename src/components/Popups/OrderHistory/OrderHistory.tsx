@@ -1,5 +1,5 @@
 import type React from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useClickOutside, useEscapeKey } from "../../../hooks";
 import type { OrderHistoryProps } from "./types";
 import styles from "./OrderHistory.module.scss";
@@ -9,14 +9,25 @@ export const OrderHistory: React.FC<OrderHistoryProps> = ({
   onClose,
 }) => {
   const popupRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   useClickOutside(popupRef, onClose, isOpen);
   useEscapeKey(onClose, isOpen);
+  // console.log('render OrderHistory');
 
   useEffect(() => {
-    if (!isOpen) {
-      const timer = setTimeout(() => {
-      }, 100); 
-      return () => clearTimeout(timer);
+    if (isOpen) {
+      setIsMounted(true);
+      const showTimer = setTimeout(() => {
+        setIsVisible(true);
+      }, 10);
+      return () => clearTimeout(showTimer);
+    } else {
+      setIsVisible(false);
+      const hideTimer = setTimeout(() => {
+        setIsMounted(false);
+      }, 300);
+      return () => clearTimeout(hideTimer);
     }
   }, [isOpen]);
 
@@ -24,11 +35,13 @@ export const OrderHistory: React.FC<OrderHistoryProps> = ({
     e.stopPropagation();
   };
 
+  if (!isMounted) return null;
+
   return (
     <div
       ref={popupRef}
       className={`${styles.popup} ${
-        isOpen ? styles["popup--visible"] : styles["popup--hidden"]
+        isVisible ? styles["popup--visible"] : styles["popup--hidden"]
       }`}
       onClick={handleContentClick}
       role="dialog"
@@ -36,9 +49,11 @@ export const OrderHistory: React.FC<OrderHistoryProps> = ({
       aria-describedby="order-history-content"
     >
       <header>
-        <h2 className={styles.popup__title}>История заказов</h2>
+        <h2 className={styles.popup__title} id="order-history-title">
+          История заказов
+        </h2>
       </header>
-      <div className={styles.popup__content}>
+      <div className={styles.popup__content} id="order-history-content">
         <div className={styles.popup__message}>
           <svg
             xmlns="http://www.w3.org/2000/svg"

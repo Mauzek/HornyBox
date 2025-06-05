@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { LuCircleUser } from "react-icons/lu";
 import { icons } from "../../assets";
@@ -10,14 +10,18 @@ import { ActionMenu } from "../Popups";
 export const TabBar = () => {
   const location = useLocation();
   const { isVisible, toggle, hide } = usePopup();
+  const moreButtonRef = useRef<HTMLButtonElement>(null);
   const user: boolean = true;
   const cart: { count: number } | null = { count: 1 };
 
-  const handleToggle = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    toggle();
-  };
+  const handleToggle = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggle();
+    },
+    [toggle]
+  );
 
   const parseGameName = (pathname: string): string | null => {
     const gameMatch = pathname.match(/^\/game\/([^/]+)/);
@@ -103,10 +107,17 @@ export const TabBar = () => {
             >
               {tab.path ? (
                 <Link to={tab.path}>{tabContent}</Link>
+              ) : tab.id === "more" ? (
+                <button
+                  ref={moreButtonRef}
+                  className={styles.tabbar__button}
+                  onClick={handleToggle}
+                >
+                  {tabContent}
+                </button>
               ) : (
                 <button
                   className={styles.tabbar__button}
-                  onClick={handleToggle}
                 >
                   {tabContent}
                 </button>
@@ -115,7 +126,12 @@ export const TabBar = () => {
           );
         })}
       </ul>
-      <ActionMenu isOpen={isVisible} onClose={hide} />
+      <ActionMenu
+        isOpen={isVisible}
+        onClose={hide}
+        toggleButtonRef={moreButtonRef}
+        isGamePage={!!gameName}
+      />
     </nav>
   );
 };
