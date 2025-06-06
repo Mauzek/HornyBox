@@ -13,7 +13,6 @@ export const OrderHistory: React.FC<OrderHistoryProps> = ({
   const [isMounted, setIsMounted] = useState(false);
   useClickOutside(popupRef, onClose, isOpen);
   useEscapeKey(onClose, isOpen);
-  // console.log('render OrderHistory');
 
   useEffect(() => {
     if (isOpen) {
@@ -26,7 +25,7 @@ export const OrderHistory: React.FC<OrderHistoryProps> = ({
       setIsVisible(false);
       const hideTimer = setTimeout(() => {
         setIsMounted(false);
-      }, 300);
+      }, 150);
       return () => clearTimeout(hideTimer);
     }
   }, [isOpen]);

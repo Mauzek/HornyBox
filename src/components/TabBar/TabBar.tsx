@@ -131,6 +131,7 @@ export const TabBar = () => {
         onClose={hide}
         toggleButtonRef={moreButtonRef}
         isGamePage={!!gameName}
+        user={user}
       />
     </nav>
   );

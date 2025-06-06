@@ -3,4 +3,5 @@ export interface ActionMenuProps {
   onClose: () => void;
   toggleButtonRef: React.RefObject<HTMLButtonElement | null>;
   isGamePage: boolean;
+  user: boolean;
 }

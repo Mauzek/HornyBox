@@ -15,13 +15,13 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   onClose,
   toggleButtonRef,
   isGamePage,
+  user,
 }) => {
   const popupRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   useClickOutside(popupRef, onClose, isOpen, toggleButtonRef);
   useEscapeKey(onClose, isOpen);
-  // console.log("render ActionMenu");
 
   useEffect(() => {
     if (isOpen) {
@@ -34,7 +34,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
       setIsVisible(false);
       const hideTimer = setTimeout(() => {
         setIsMounted(false);
-      }, 300);
+      }, 150);
       return () => clearTimeout(hideTimer);
     }
   }, [isOpen]);
@@ -95,14 +95,16 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
             <span className={styles.popup__text}>Поддержка</span>
           </a>
         </li>
-        <li className={styles.popup__item}>
-          <button onClick={handleHistoryClick}>
-            <span className={styles.popup__icon}>
-              <LuHistory />
-            </span>
-            <span className={styles.popup__text}>История</span>
-          </button>
-        </li>
+        {user && (
+          <li className={styles.popup__item}>
+            <Link to="/history" onClick={handleHistoryClick}>
+              <span className={styles.popup__icon}>
+                <LuHistory />
+              </span>
+              <span className={styles.popup__text}>История</span>
+            </Link>
+          </li>
+        )}
       </ul>
     </div>
   );

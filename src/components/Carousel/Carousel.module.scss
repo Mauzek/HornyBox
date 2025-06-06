@@ -1,0 +1,87 @@
+.carousel {
+    position: relative;
+
+    &--banner {
+        .carousel__viewport {
+            // border-radius: 20px 20px 0 0;
+        }
+    }
+
+    &--article {
+        .carousel__content {
+            gap: 1rem;
+        }
+    }
+}
+
+.carousel__container {
+    position: relative;
+}
+
+.carousel__viewport {
+    overflow: hidden;
+}
+
+.carousel__content {
+    display: flex;
+    margin-left: -1rem;
+}
+
+.carousel__indicators {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    height: 16px;
+
+    @media (max-width: 640px) {
+        height: 10px;
+    }
+}
+
+.carousel__indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 999px;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    padding: 5px;
+    height: 16px;
+    width: 16px;
+    background: rgba(255, 255, 255, 0.3);
+
+    @media (max-width: 640px) {
+        height: 10px;
+        width: 10px;
+    }
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    &--active {
+        width: 70px;
+        background: #c8ff00;
+
+        @media (max-width: 640px) {
+            width: 45px;
+        }
+
+        &:hover {
+            background: #c8ff00;
+        }
+    }
+}
