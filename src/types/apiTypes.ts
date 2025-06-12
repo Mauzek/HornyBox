@@ -35,6 +35,8 @@ export interface Banner {
   imageMobile: string;
   gameName: string;
   description: BannerDescription | null;
+  badge: string | null;
+  link: string | null;
 }
 
 export interface BannerDescription {

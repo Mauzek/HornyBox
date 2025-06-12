@@ -11,35 +11,36 @@ export const useCarousel = ({
   autoPlay = true,
   autoPlayInterval = 5000,
 }: UseCarouselOptions) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [index, setIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const goToSlide = useCallback((index: number) => {
-    if (isTransitioning || index < 0 || index >= slidesCount) return;
-    setIsTransitioning(true);
-    setCurrentSlide(index);
-    setTimeout(() => setIsTransitioning(false), 300);
-  }, [isTransitioning, slidesCount]);
+  const goToSlide = useCallback(
+    (target: number) => {
+      if (isTransitioning) return;
+      setIsTransitioning(true);
+      setIndex(target);
+      setTimeout(() => setIsTransitioning(false), 300);
+    },
+    [isTransitioning]
+  );
 
   const nextSlide = useCallback(() => {
-    const next = (currentSlide + 1) % slidesCount;
-    goToSlide(next);
-  }, [currentSlide, slidesCount, goToSlide]);
+    goToSlide(index + 1);
+  }, [index, goToSlide]);
 
   const prevSlide = useCallback(() => {
-    const prev = currentSlide === 0 ? slidesCount - 1 : currentSlide - 1;
-    goToSlide(prev);
-  }, [currentSlide, slidesCount, goToSlide]);
+    goToSlide(index - 1);
+  }, [index, goToSlide]);
 
   useEffect(() => {
     if (!autoPlay || slidesCount <= 1) return;
-
     const interval = setInterval(nextSlide, autoPlayInterval);
     return () => clearInterval(interval);
   }, [autoPlay, autoPlayInterval, nextSlide, slidesCount]);
 
   return {
-    currentSlide,
+    index,
+    setIndex,
     isTransitioning,
     goToSlide,
     nextSlide,

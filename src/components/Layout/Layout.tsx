@@ -7,7 +7,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
     return (
         <>
             <Header />
-            <main >{children}</main>
+            <main>{children}</main>
             <TabBar/>
             {/* <Footer /> */}
         </>
