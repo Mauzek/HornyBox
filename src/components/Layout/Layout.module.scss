@@ -1,0 +1,9 @@
+@use '../../styles/variables' as vars;
+
+.main{
+    padding: 24px 25px;
+    
+    @media (max-width: 768px) {
+        padding: 24px 15px;
+    }
+}

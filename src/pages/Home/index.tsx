@@ -7,7 +7,7 @@ export const HomePage = () => {
   document.title = "HornyBox - магазин выгодных донатов и попоплнений"
   const { data, error, isLoading } = useGetAssetsQuery();
   if(data === undefined) return <p>Loading...</p>
-  const banners = data?.banners.filter(banner => banner.description !== null);
+  const banners = data?.banners.filter(banner => banner.description === null);
   console.log('render')
   console.log(banners)
   if (isLoading) return <p>Loading...</p>
@@ -18,7 +18,7 @@ export const HomePage = () => {
         <h1>Донат и пополнения</h1>
       </div>
 
-    <Carousel slides={banners} type='article' interval={5000} />
+    <Carousel slides={banners} type='banner' interval={5000} />
 
     </section>
   )
