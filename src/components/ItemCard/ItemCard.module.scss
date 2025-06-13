@@ -1,0 +1,47 @@
+@use '../../styles/variables' as vars;
+
+.grid_item {
+    margin: 0;
+    height: auto;
+    width: 100%;
+    border-radius: 10px;
+    background-color: vars.$card-background;
+    color: vars.$text-color;
+    text-align: left;
+    transition: background-color 0.2s;
+
+    &--rectangle {
+        aspect-ratio: 341.25 / 135;
+
+        img {
+            height: 75.93%;
+        }
+    }
+
+    &--square {
+        aspect-ratio: 53/51;
+
+        img {
+            height: 70.59%;
+        }
+    }
+
+    div {
+        padding: 10px;
+        h4 {
+            font-family: vars.$title-text;
+            font-weight: 400;
+            font-size: 12px, 9.7%, 16px;
+        }
+    }
+
+    img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+        object-fit: cover
+    }
+
+    &:hover{
+        background-color: vars.$card-background-hover;
+    }
+}

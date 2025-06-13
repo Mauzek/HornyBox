@@ -18,14 +18,17 @@ export interface Video {
 export interface AvailableInBot {
   id: number;
   title: string;
-  image: string;
+  imagePC: string;
+  imageMobile: string;
+  link: string;
 }
 
 export interface Game {
   id: number;
   title: string;
-  image: string;
-  rectangle: boolean;
+  imagePC: string;
+  imageMobile: string;
+  link: string;
 }
 
 export interface Banner {
@@ -36,7 +39,7 @@ export interface Banner {
   gameName: string;
   description: BannerDescription | null;
   badge: string | null;
-  link: string | null;
+  link: string;
 }
 
 export interface BannerDescription {
@@ -46,10 +49,20 @@ export interface BannerDescription {
 
 export interface Assets {
   articles: Article[];
+  popular: Game[];
   videos: Video[];
   availableInBot: AvailableInBot[];
   games: Game[];
   banners: Banner[];
+  services: Service[];
+}
+
+export interface Service{
+  id: number;
+  title: string;
+  imagePC: string;
+  imageMobile: string;
+  link: string;
 }
 
 export interface Currency {

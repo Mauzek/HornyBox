@@ -33,6 +33,9 @@ export const ArticleSlide: React.FC<ArticleSlideProps> = ({
         <div className={styles.slide__content}>
           <div className={styles["slide__badges-container"]}>
             <span className={styles.slide__badge}>{slide.gameName}</span>
+            {slide.badge && (
+              <span className={styles.slide__badge}>{slide.badge}</span>
+            )}
           </div>
           <h3 className={styles.slide__title}>{slide.title}</h3>
 
