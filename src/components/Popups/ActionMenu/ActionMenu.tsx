@@ -28,13 +28,13 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
       setIsMounted(true);
       const showTimer = setTimeout(() => {
         setIsVisible(true);
-      }, 10);
+      }, 1);
       return () => clearTimeout(showTimer);
     } else {
       setIsVisible(false);
       const hideTimer = setTimeout(() => {
         setIsMounted(false);
-      }, 150);
+      }, 50);
       return () => clearTimeout(hideTimer);
     }
   }, [isOpen]);

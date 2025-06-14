@@ -110,7 +110,9 @@ export const TabBar = () => {
               ) : tab.id === "more" ? (
                 <button
                   ref={moreButtonRef}
-                  className={styles.tabbar__button}
+                  className={`${styles.tabbar__button} ${
+                    isVisible ? styles["tabbar__button--active"] : ""
+                  }`}
                   onClick={handleToggle}
                 >
                   {tabContent}

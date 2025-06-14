@@ -1,14 +1,21 @@
 @use '../../styles/variables' as vars;
 
 .grid_item {
+    display: flex;
+    flex-direction: column;
     margin: 0;
-    height: auto;
+    height: 100%;
     width: 100%;
     border-radius: 10px;
     background-color: vars.$card-background;
     color: vars.$text-color;
     text-align: left;
     transition: background-color 0.2s;
+    overflow: hidden;
+
+    picture {
+        display: contents;
+    }
 
     &--rectangle {
         aspect-ratio: 341.25 / 135;
@@ -26,22 +33,89 @@
         }
     }
 
-    div {
-        padding: 10px;
-        h4 {
-            font-family: vars.$title-text;
-            font-weight: 400;
-            font-size: 12px, 9.7%, 16px;
+    &--small {
+        aspect-ratio: 44/45;
+
+        img {
+            height: 66.67%;
+            aspect-ratio: 22 / 15;
+
+            @media screen and (max-width: 578px) {
+                aspect-ratio: 1 / 1;
+                height: 72.69%;
+            }
+        }
+
+        @media screen and (max-width: 578px) {
+            aspect-ratio: 165 / 227;
+
+            .grid_item__card_content {
+                flex-direction: column;
+                justify-content: center;
+                padding: 5px 5px;
+            }
         }
     }
 
-    img {
-        width: 100%;
-        border-radius: 10px 10px 0 0;
-        object-fit: cover
+    &--medium {
+        aspect-ratio: 53/51;
+
+        img {
+            height: 70.59%;
+            aspect-ratio: 53/36;
+
+            @media screen and (max-width: 578px) {
+                aspect-ratio: 1 / 1;
+                height: 72.69%;
+            }
+        }
+
+        @media screen and (max-width: 578px) {
+            aspect-ratio: 165 / 227;
+
+            .grid_item__card_content {
+                flex-direction: column;
+                justify-content: center;
+                padding: 5px 5px;
+            }
+        }
     }
 
-    &:hover{
+    &--large {
+        aspect-ratio: 341.25 / 135;
+
+        img {
+            height: 75.93%;
+        }
+
+        .grid_item__card_content {
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    &__card_content {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 10px 10px;
+        height: 100%;
+    }
+
+    &__card_title {
+        font-family: vars.$title-text;
+        font-weight: 400;
+        font-size: clamp(16px, 3.68%, 25px);
+        line-height: 130%;
+        margin-bottom: 5px;
+    }
+
+    img {
+        border-radius: 10px 10px 0 0;
+        object-fit: cover;
+    }
+
+    &:hover {
         background-color: vars.$card-background-hover;
     }
 }

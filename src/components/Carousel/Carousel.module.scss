@@ -1,76 +1,85 @@
 .carousel {
     position: relative;
-}
 
-.carousel__container {
-    position: relative;
-}
-
-.carousel__viewport {
-  position: relative;
-  overflow: hidden;
-}
-.carousel__content {
-  position: relative;
-  width: 100%;
-  height: 400px;
-}
-
-.carousel__indicators {
-    margin: 15px 0;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    height: 16px;
-
-    @media (max-width: 640px) {
-        height: 10px;
-    }
-}
-
-.carousel__indicator {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2px;
-    white-space: nowrap;
-    overflow: hidden;
-    border-radius: 999px;
-    font-weight: 500;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.2s ease;
-    padding: 5px;
-    height: 16px;
-    width: 16px;
-    background: rgba(255, 255, 255, 0.3);
-
-    @media (max-width: 640px) {
-        height: 10px;
-        width: 10px;
+    &--banner{
+        margin: 0;
     }
 
-    &:hover {
-        background: rgba(255, 255, 255, 0.5);
+    &--article{
+        margin-top: 45px;
     }
 
-    &:disabled {
-        cursor: not-allowed;
-        opacity: 0.5;
+    &__container {
+        position: relative;
     }
 
-    &--active {
-        width: 70px;
-        background: #c8ff00;
+    &__viewport {
+        position: relative;
+        overflow: hidden;
+    }
+
+    &__content {
+        position: relative;
+        width: 100%;
+        height: 400px;
+    }
+
+    &__indicators {
+        margin: 15px 0;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        height: 16px;
 
         @media (max-width: 640px) {
-            width: 45px;
+            height: 10px;
+        }
+    }
+
+    &__indicator {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2px;
+        white-space: nowrap;
+        overflow: hidden;
+        border-radius: 999px;
+        font-weight: 500;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        user-select: none;
+        transition: all 0.2s ease;
+        padding: 5px;
+        height: 16px;
+        width: 16px;
+        background: rgba(255, 255, 255, 0.3);
+
+        @media (max-width: 639px) {
+            height: 10px;
+            width: 10px;
         }
 
         &:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        &--active {
+            width: 70px;
             background: #c8ff00;
+
+            @media (max-width: 639px) {
+                width: 45px;
+            }
+
+            &:hover {
+                background: #c8ff00;
+            }
         }
     }
 }

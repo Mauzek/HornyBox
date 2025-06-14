@@ -2,5 +2,8 @@ import type { Service, Game, AvailableInBot } from "../../types";
 
 export interface ItemGridProps {
   items: Service[] | Game[] | AvailableInBot[];
-  type?: "square" | "rectangle";
+  gridType?: "square" | "rectangle";
+  itemSize?: "small" | "medium" | "large";
+  split?: boolean;
+  id?: string;
 }

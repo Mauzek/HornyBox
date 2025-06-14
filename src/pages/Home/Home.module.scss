@@ -1,6 +1,11 @@
 @use '../../styles/variables' as vars;
 
 .page{
+    
+    @media screen and (max-width: 639px) {
+        margin-top: 10px;
+    }
+
     &__title {
         padding: 20px 35px;
         background-color: vars.$neutral-color-dark;
@@ -10,8 +15,7 @@
             font-size: clamp(2.1875rem, 2.0775rem + .4695vw, 2.5rem);
             line-height: 130%;
             font-weight: 500;
-            letter-spacing: 0;
-       
+            word-spacing: 0.50px;
         }
     }
 }

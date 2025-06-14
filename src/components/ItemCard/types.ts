@@ -7,4 +7,5 @@ export interface ItemCardProps {
     link: string;
   };
   type?: "square" | "rectangle";
+  size?: "small" | "medium" | "large";
 }
