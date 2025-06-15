@@ -7,7 +7,7 @@ export const ArticleSlide: React.FC<ArticleSlideProps> = ({
   slide,
   isActive,
 }) => {
-  const linkTo = slide.link ? `/game/${slide.gameName.toLowerCase().replace(/\s+/g, "_").replace(/:/g, "")}` : '/';
+  const linkTo = slide.link ? `/games/${slide.gameName.toLowerCase().replace(/\s+/g, "_").replace(/:/g, "")}` : '/';
   return (
     <div
       role="group"
@@ -22,7 +22,7 @@ export const ArticleSlide: React.FC<ArticleSlideProps> = ({
           <picture className={styles.slide__picture}>
             <source srcSet={slide.imageMobile} media="(max-width: 640px)" />
             <img
-              src={slide.imagePc}
+              src={slide.imagePC}
               alt={slide.title}
               className={styles.slide__image}
               decoding="auto"

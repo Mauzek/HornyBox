@@ -9,3 +9,4 @@ export * from './FAQ';
 export * from './About';
 export * from './Politics';
 export * from './NotFound';
+export * from './Services'

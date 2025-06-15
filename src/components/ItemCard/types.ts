@@ -1,11 +1,7 @@
+import type { AvailableInBot, Game, Service } from "../../types";
+
 export interface ItemCardProps {
-  item: {
-    id: number;
-    title: string;
-    imagePC: string;
-    imageMobile: string;
-    link: string;
-  };
+  item: Game | Service | AvailableInBot;
   type?: "square" | "rectangle";
   size?: "small" | "medium" | "large";
 }

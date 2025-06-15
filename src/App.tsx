@@ -13,6 +13,8 @@ import {
   GamePage,
   GameCategoryPage,
   NotFoundPage,
+  SteamPage,
+  ServicePage,
 } from "./pages";
 
 function App() {
@@ -34,11 +36,13 @@ function App() {
         <Route path="/politics" element={<PoliticsPage />} />
 
         {/* Динамические маршруты для игр */}
-        <Route path="/game/:gameName" element={<GamePage />} />
+        <Route path="/games/:gameName" element={<GamePage />} />
         <Route
-          path="/game/:gameName/:category"
+          path="/games/:gameName/:category"
           element={<GameCategoryPage />}
         />
+        <Route path="/services/steam" element={<SteamPage />} />
+        <Route path="/services/:serviceName" element={<ServicePage />} />
 
         {/* Страница 404 */}
         <Route path="*" element={<NotFoundPage />} />

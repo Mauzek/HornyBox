@@ -7,6 +7,7 @@ export const BannerSlide: React.FC<BannerSlideProps> = React.memo(({
   slide,
   isActive,
 }) => {
+  const linkTo = slide.link ? `/games/${slide.gameName.toLowerCase().replace(/\s+/g, "_").replace(/:/g, "")}` : '/';
   return (
     <div
       role="group"
@@ -15,14 +16,14 @@ export const BannerSlide: React.FC<BannerSlideProps> = React.memo(({
     >
       <div className={styles.slide__content}>
         <Link
-          to={`/game/${slide.gameName.toLowerCase().replace(/\s+/g, "_").replace(/:/g, "")}`}
+          to={linkTo}
           className={styles.slide__link}
         ></Link>
 
         <picture className={styles.slide__picture}>
           <source srcSet={slide.imageMobile} media="(max-width: 640px)" />
           <img
-            src={slide.imagePc}
+            src={slide.imagePC}
             alt={slide.title}
             className={styles.slide__image}
             decoding="auto"

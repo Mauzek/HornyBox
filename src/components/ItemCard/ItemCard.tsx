@@ -3,6 +3,14 @@ import { Link } from "react-router-dom";
 import styles from "./ItemCard.module.scss";
 import type { ItemCardProps } from "./types";
 
+/*
+  - поработать над стилями карточек, в основном над их размерами и картинками
+  - сделать LazyLoadImage для картинок в карточках
+  - заполнить в API сервисы
+  - отполировать готовое
+  - если время будет, обновить данные в API
+*/ 
+
 export const ItemCard: React.FC<ItemCardProps> = ({
   item,
   type = "square",
@@ -10,8 +18,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({
 }) => {
   const isExternalLink = item.link && item.link.startsWith("https");
   const internalLink = !isExternalLink
-    ? `game/${item.link.toLowerCase().replace(" ", "_")}`
-    : "";
+    ? `${item.type}s/${item.link.toLowerCase().replace(/\s+/g, "_").replace(/:/g, "")}` : '/'
 
   return isExternalLink ? (
     <a

@@ -21,6 +21,7 @@ export interface AvailableInBot {
   imagePC: string;
   imageMobile: string;
   link: string;
+  type: string;
 }
 
 export interface Game {
@@ -29,17 +30,19 @@ export interface Game {
   imagePC: string;
   imageMobile: string;
   link: string;
+  type: string;
 }
 
 export interface Banner {
   id: number;
   title: string;
-  imagePc: string;
+  imagePC: string;
   imageMobile: string;
   gameName: string;
   description: BannerDescription | null;
   badge: string | null;
   link: string;
+  type: string;
 }
 
 export interface BannerDescription {
@@ -63,6 +66,7 @@ export interface Service{
   imagePC: string;
   imageMobile: string;
   link: string;
+  type: string;
 }
 
 export interface Currency {

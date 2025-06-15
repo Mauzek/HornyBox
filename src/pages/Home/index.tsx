@@ -36,6 +36,10 @@ export const HomePage = () => {
 
       <Carousel slides={carouselSlides.articles} type="article" interval={5000} />
 
+      <Section title="Сервисы" id="services">
+        <ItemGrid items={data.services} split={true} itemSize="small" />
+      </Section>
+
       <Section title="Игры" id="game">
         <ItemGrid items={data.games} split={true} itemSize="small" />
       </Section>

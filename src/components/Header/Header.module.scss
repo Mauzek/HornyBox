@@ -134,12 +134,13 @@
     }
   }
 
-  @media screen and (min-width: 769px) {
+  @media screen and (min-width: 640px) {
     transform: translateY(calc(var(--header-hidden) * -20px));
     transition: transform 0.15s ease;
   }
 
   @media screen and (max-width: 768px) {
+    padding: 10px 15px;
     &__list {
       line-height: 115%;
     }
