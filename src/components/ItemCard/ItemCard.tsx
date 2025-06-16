@@ -4,10 +4,7 @@ import styles from "./ItemCard.module.scss";
 import type { ItemCardProps } from "./types";
 
 /*
-  - поработать над стилями карточек, в основном над их размерами и картинками
   - сделать LazyLoadImage для картинок в карточках
-  - заполнить в API сервисы
-  - отполировать готовое
   - если время будет, обновить данные в API
 */ 
 

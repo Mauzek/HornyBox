@@ -1,4 +1,4 @@
-import acticles from './articles-category.svg';
+import articles from './articles-category.svg';
 import bot from './bot-category.svg';
 import cart from './cart-icon.svg';
 import dots from './dots-icon.svg';
@@ -10,10 +10,11 @@ import sadEmoji from './sad-emoji.svg';
 import services from './services-category.svg';
 import steam from './steam-icon.svg';
 import telegram from './tg-icon.svg';
+import videos from './videos-category.svg';
 import vk from './vk-icon.svg';
 
 export const icons = {
-    acticles,
+    articles,
     bot,
     cart,
     dots,
@@ -25,6 +26,7 @@ export const icons = {
     services,
     steam,
     telegram,
+    videos,
     vk,
 } as const;
 

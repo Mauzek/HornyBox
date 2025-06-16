@@ -1,4 +1,4 @@
-import { Carousel, Section } from "../../components";
+import { Carousel, ContentGrid, Section } from "../../components";
 import { ItemGrid } from "../../components/ItemGrid";
 import { useGetAssetsQuery } from "../../store";
 import type { Banner } from "../../types";
@@ -46,6 +46,14 @@ export const HomePage = () => {
 
       <Section title="Доступно в боте" id="bot">
         <ItemGrid items={data.availableInBot} itemSize="medium" />
+      </Section>
+
+      <Section title="Видео" id="videos">
+        <ContentGrid id="videos" items={data.videos} />
+      </Section>
+
+      <Section title="Статьи" id="articles">
+         <ContentGrid id="articles" items={data.articles}  gap={20}/>
       </Section>
     </section>
   );

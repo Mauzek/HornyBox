@@ -1,0 +1,47 @@
+@use '../../../styles/variables' as vars;
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: transparent;
+    padding: 0;
+    text-align: left;
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    &__date {
+        font-size: clamp(13px, .7465rem + .2817vw, 16px);
+        font-weight: 500;
+        line-height: 130%;
+        color: vars.$text-neutral;
+    }
+
+    &__title {
+        color: vars.$text-color;
+        font-family: vars.$title-text;
+        font-size: clamp(13px, .7465rem + .2817vw, 16px);
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        font-weight: 400;
+        transition: color 0.3s ease-in-out;
+                line-height: 130%;
+    }
+
+    &:hover {
+        .card__title {
+            color: vars.$green-color;
+        }
+    }
+}

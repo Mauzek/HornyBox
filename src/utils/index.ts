@@ -1,1 +1,2 @@
-export * from './loadFromLocalStorage'
+export * from './loadFromLocalStorage';
+export * from './formatDate';
