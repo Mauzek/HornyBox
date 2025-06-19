@@ -52,6 +52,6 @@
   &--hidden {
     transform: scale(0.8);
     opacity: 0;
-    pointer-events: none; /* Отключаем взаимодействие во время анимации скрытия */
+    pointer-events: none;
   }
 }

@@ -128,4 +128,10 @@
     &:hover {
         background-color: vars.$card-background-hover;
     }
+
+    &:focus-visible {
+        outline: 2px solid vars.$green-color;
+        outline-offset: 2px;
+        border-radius: 10px;
+    }
 }

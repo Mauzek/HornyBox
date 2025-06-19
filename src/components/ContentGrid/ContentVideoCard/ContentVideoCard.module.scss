@@ -8,6 +8,7 @@
     background-color: transparent;
     padding: 0;
     text-align: left;
+    outline: none;
 
     &__image {
         display: block;
@@ -36,12 +37,18 @@
         line-clamp: 3;
         font-weight: 400;
         transition: color 0.3s ease-in-out;
-                line-height: 130%;
+        line-height: 130%;
     }
 
     &:hover {
         .card__title {
             color: vars.$green-color;
         }
+    }
+
+    &:focus-visible {
+        outline: 2px solid vars.$green-color;
+        outline-offset: 2px;
+        border-radius: 10px;
     }
 }
