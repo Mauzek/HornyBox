@@ -1,4 +1,4 @@
-import { Carousel, ContentGrid, Section } from "../../components";
+import { Carousel, ContentGrid, FAQGrid, Section } from "../../components";
 import { ItemGrid } from "../../components/ItemGrid";
 import { useGetAssetsQuery } from "../../store";
 import type { Banner } from "../../types";
@@ -54,6 +54,10 @@ export const HomePage = () => {
 
       <Section title="Статьи" id="articles">
          <ContentGrid id="articles" items={data.articles}  gap={20}/>
+      </Section>
+
+      <Section title="FAQ" id="faq">
+          <FAQGrid/>
       </Section>
     </section>
   );

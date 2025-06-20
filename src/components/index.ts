@@ -5,3 +5,4 @@ export * from './Carousel';
 export * from './Section';
 export * from './LazyImage';
 export * from './ContentGrid';
+export * from './FAQGrid';

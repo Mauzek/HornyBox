@@ -1,0 +1,92 @@
+@use '../../../styles/variables' as vars;
+
+.accordion {
+    background-color: vars.$neutral-color-4;
+    border-radius: 10px;
+    
+    &__button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        width: 100%;
+        text-align: left;
+        cursor: pointer;
+        border: none;
+        background: none;
+
+        &:focus-visible {
+            outline: 2px solid vars.$green-color;
+            outline-offset: 2px;
+            border-radius: 10px;
+        }
+    }
+
+    &__title {
+        font-size: clamp(1rem, 0.912rem + 0.3756vw, 1.25rem);
+        font-weight: 500;
+        font-family: vars.$title-text;
+        color: vars.$text-color;
+    }
+
+    &__icon {
+        background-color: vars.$button-secondary-background;
+        color: vars.$green-color;
+        transition: background-color 0.3s ease;
+        padding: 10px;
+        border-radius: 10px;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        svg {
+            position: absolute;
+            font-size: 24px;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        & :global(.accordion__iconPlus) {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        & :global(.accordion__iconMinus) {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        &--open {
+            .accordion__iconPlus {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            .accordion__iconMinus {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+
+    &__content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        color: vars.$text-neutral;
+        font-weight: 500;
+        line-height: 130%;
+        letter-spacing: 0;
+        font-size: clamp(13px, .7465rem + .2817vw, 16px);
+        padding: 0px 15px;
+        transition: max-height 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, padding 0.2s ease;
+        text-align: left;
+
+        &--open {
+            opacity: 1;
+            padding: 0px 15px 15px 15px;
+        }
+    }
+}

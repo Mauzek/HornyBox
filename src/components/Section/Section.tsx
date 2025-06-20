@@ -10,7 +10,7 @@ export const Section: React.FC<SectionProps> = ({ children, title, id }) => {
       <div className={styles.section__title_wrapper}>
         <h2 className={styles.section__title}>
           {title}
-          <img src={icons[id]} alt={title} className={`${(id === "videos" || id === "articles") ? styles.section__icon : ""} ${id === "videos" ? styles.section__icon_video : ""}`} />
+          <img src={icons[id]} alt={title} className={`${(id === "videos" || id === "articles"  || id === "faq") ? styles.section__icon : ""} ${id === "videos" ? styles.section__icon_video : ""}`} />
         </h2>
         {(id === "videos" || id === "articles") && (
           <Link to={linkTo} className={styles.section__link}>
