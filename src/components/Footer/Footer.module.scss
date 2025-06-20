@@ -1,0 +1,192 @@
+@use '../../styles/variables' as vars;
+
+.footer {
+    padding: 0 25px;
+    margin-top: 30px;
+
+    &__container {
+        display: grid;
+        grid-template-areas:
+            "headline"
+            "social"
+            "reviews"
+            "content";
+        padding: 20px 0;
+        gap: 15px;
+
+        @media screen and (min-width: 1024px) {
+            grid-template-areas:
+                "headline reviews social"
+                "content reviews social";
+        }
+
+        @media screen and (min-width: 480px) {
+            grid-template-areas:
+                "headline social"
+                "content reviews"
+                "content reviews";
+        }
+    }
+
+    &__headline {
+        display: grid;
+        grid-area: headline;
+        color: vars.$text-color;
+        font-weight: 400;
+        letter-spacing: 130%;
+        font-size: clamp(13px, .7465rem + .2817vw, 16px);
+        text-align: left;
+    }
+
+    &__content {
+        display: grid;
+        grid-area: content;
+        color: vars.$text-neutral;
+        font-weight: 500;
+        letter-spacing: 130%;
+        font-size: 13px;
+        max-width: 550px;
+        text-align: left;
+    }
+
+    &__reviews {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        grid-area: reviews;
+
+        a {
+            display: flex;
+            flex-direction: column;
+            padding: 10px 15px 15px 15px;
+            background-color: rgba(255, 215, 71, .09);
+            border-radius: 10px;
+            gap: 5px;
+            min-width: 140px;
+            min-height: 116px;
+            align-items: center;
+
+            p {
+                color: vars.$text-color;
+                font-size: clamp(13px, .7465rem + .2817vw, 16px);
+                font-family: vars.$title-text;
+            }
+        }
+    }
+
+    &__icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    &__stars {
+        display: flex;
+        flex-direction: row;
+
+        img {
+            width: 20px;
+            height: 20px;
+        }
+    }
+
+    &__social {
+        display: grid;
+        grid-area: social;
+        grid-auto-flow: row;
+        gap: 13px;
+        margin-left: auto;
+
+        @media screen and (min-width: 640px) {
+            min-width: 340px;
+        }
+    }
+
+    &__socialList {
+        display: flex;
+        gap: 35px;
+        justify-content: center;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+
+        a {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__buttons {
+        display: grid;
+        grid-auto-flow: row;
+        gap: 15px;
+
+        &>*:first-child {
+            color: vars.$green-color;
+            background-color: vars.$neutral-color-dark-2;
+        }
+    }
+
+    &__linkButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: vars.$text-color;
+        background-color: vars.$neutral-color-2;
+        border-radius: 10px;
+        padding: 5px 20px;
+        height: 41px;
+    }
+
+    &__contact {
+        p {
+            color: vars.$text-neutral;
+            font-weight: 500;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        a {
+            color: vars.$text-color;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+        }
+    }
+
+    &__division {
+        border: none;
+        height: 0.5px;
+        background-color: vars.$text-neutral;
+        width: 100%;
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    &__navigation {
+        display: flex;
+        padding-top: 16px;
+        padding-bottom: 40px;
+
+        &_list {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+            padding: 0;
+        }
+
+        &_item {
+            a {
+                color: vars.$text-neutral;
+                font-size: 13px;
+                font-weight: 500;
+            }
+        }
+
+        @media not all and (min-width: 769px) {
+            padding-bottom: 90px;
+        }
+    }
+
+
+}

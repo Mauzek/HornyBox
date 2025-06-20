@@ -8,7 +8,9 @@ import home from './home-icon.svg';
 import popular from './popular-category.svg';
 import sadEmoji from './sad-emoji.svg';
 import services from './services-category.svg';
+import star from './star.svg';
 import steam from './steam-icon.svg';
+import tBank from './t-bank.svg';
 import telegram from './tg-icon.svg';
 import videos from './videos-category.svg';
 import vk from './vk-icon.svg';
@@ -24,7 +26,9 @@ export const icons = {
     popular,
     sadEmoji,
     services,
+    star,
     steam,
+    tBank,
     telegram,
     videos,
     vk,
