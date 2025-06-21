@@ -1,7 +1,7 @@
 export interface AccordionProps {
-    id: string;
+    id: number;
     title: string;
     content: string;
     isOpen: boolean;
-    onToggle: (id: string) => void;
+    onToggle: (id: number) => void;
 }
