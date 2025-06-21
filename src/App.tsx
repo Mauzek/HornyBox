@@ -11,7 +11,6 @@ import {
   AboutPage,
   PoliticsPage,
   GamePage,
-  GameCategoryPage,
   NotFoundPage,
   SteamPage,
   ServicePage,
@@ -36,11 +35,8 @@ function App() {
         <Route path="/politics" element={<PoliticsPage />} />
 
         {/* Динамические маршруты для игр */}
-        <Route path="/games/:gameName" element={<GamePage />} />
-        <Route
-          path="/games/:gameName/:category"
-          element={<GameCategoryPage />}
-        />
+        <Route path="/games/:gameName/:category?" element={<GamePage />} />
+
         <Route path="/services/steam" element={<SteamPage />} />
         <Route path="/services/:serviceName" element={<ServicePage />} />
 

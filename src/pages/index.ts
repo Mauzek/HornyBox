@@ -4,7 +4,6 @@ export * from './Profile';
 export * from './Home';
 export * from './Videos';
 export * from './[gameName]';
-export * from './[gameName]/[category]';
 export * from './FAQ';
 export * from './About';
 export * from './Politics';
