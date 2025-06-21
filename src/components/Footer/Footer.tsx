@@ -28,7 +28,7 @@ export const Footer = () => {
           className={styles.footer__reviews}
           aria-label="Отзывы T-Bank"
         >
-          <a href="#" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.tinkoff.ru/reviews/company/horny-box/111785/" target="_blank" rel="noopener noreferrer">
             <img className={styles.footer__icon} src={icons.tBank} alt="T-Bank" />
             <div className={styles.footer__stars}>
               {[...Array(5)].map((_, i) => (

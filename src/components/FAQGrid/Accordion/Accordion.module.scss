@@ -81,7 +81,7 @@
         letter-spacing: 0;
         font-size: clamp(13px, .7465rem + .2817vw, 16px);
         padding: 0px 15px;
-        transition: max-height 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease, padding 0.2s ease;
+        transition: max-height 0.3s , opacity 0.3s ease, padding 0.3s ease;
         text-align: left;
 
         &--open {
