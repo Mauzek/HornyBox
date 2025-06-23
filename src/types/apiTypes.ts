@@ -69,6 +69,50 @@ export interface Service{
   type: string;
 }
 
+export interface Category{
+  id: number;
+  name: string;
+  description: string;
+  link: string;
+}
+
+export interface Type {
+  id: number;
+  flag?: string;
+  name: string;
+  link: string;
+}
+
+export interface Product {
+  id: number;
+  name: string;
+  image: string;
+  price: Currency;
+  discountPrice: number;
+  category: {
+    id: number;
+    name: string;
+  };
+  poupType: "none" | "bot" | "fullpack" | "explanation";
+  poupData?: string;
+}
+
+
+export interface FAQ {
+  id: number;
+  question: string;
+  answer: string;
+}
+export interface GameProducts {
+  name: string;
+  image: string;
+  category: Category[];
+  type?: Type[];
+  products: Product[];
+  description: string;
+  faq: FAQ[];
+}
+
 export interface Currency {
   USD: number;
   KZT: number;
