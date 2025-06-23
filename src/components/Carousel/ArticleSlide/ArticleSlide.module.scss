@@ -96,9 +96,9 @@
 
   &__badges-container {
     display: flex;
+    gap: 10px;
     flex-direction: row;
     align-items: start;
-
   }
 
   &__badge {
