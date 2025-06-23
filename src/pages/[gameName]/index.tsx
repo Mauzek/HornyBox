@@ -1,15 +1,32 @@
 import { useParams } from "react-router-dom";
-import { Breadcrumb } from "../../components";
+import { useEffect } from "react";
+import { Breadcrumb, ProductHeader } from "../../components";
+import { useGetGameProductsQuery } from "../../store";
 
 export const GamePage = () => {
   const params = useParams();
   const { gameName, category } = params;
-  document.title = category ? `Купить ${category} в ${gameName}` : `Донат в ${gameName}`
+  const { data, isLoading } = useGetGameProductsQuery(gameName!, {
+    skip: !gameName,
+  });
+  const categoryData = data?.category.find((item) => item.link === category);
+
+  useEffect(() => {
+    if (data?.name) {
+      document.title = category
+        ? `Купить ${categoryData?.description} в ${data.name}`
+        : `Донат в ${data.name}`;
+    }
+  }, [data?.name, category, categoryData]);
+
+  if (isLoading || !data) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <section>
-      <Breadcrumb breadcrumb={params} lable="Genshin Impact"/>
-      <h1>{gameName}</h1>
-      <h2>{category}</h2>
+      <Breadcrumb breadcrumb={params} lable={data.name} />
+      <ProductHeader title={data.name} image={data.image} categories={data.category} />
     </section>
   );
-}
+};

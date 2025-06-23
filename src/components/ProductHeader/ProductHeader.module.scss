@@ -1,0 +1,68 @@
+@use '../../styles/variables' as vars;
+
+.header {
+    display: flex;
+    gap: 25px;
+            margin-top: 30px;
+    &__image {
+        border-radius: 10px;
+        aspect-ratio: 1/1;
+        width: 125px;
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    &__title {
+        display: inline-block;
+        width: fit-content;
+        font-weight: 500;
+        line-height: 130%;
+        font-size: clamp(2.1875rem, 2.0775rem + .4695vw, 2.5rem);
+        text-align: left;
+    }
+
+
+    &__list {
+        display: flex;
+        gap: 15px;
+        max-height: 42px;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    &__item {
+        height: 100%;
+    }
+
+    &__link {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        color: vars.$text-color;
+        background-color: vars.$neutral-color-dark-2;
+        padding: 7px 20px;
+        border-radius: 10px;
+        border: 2px solid transparent;
+        font-weight: 500;
+        line-height: 130%;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+
+        &:hover {
+            color: vars.$green-color;
+            background-color: rgba(200, 255, 0, .15);
+        }
+
+        &--active {
+            border-color: vars.$green-color;
+        }
+    }
+}

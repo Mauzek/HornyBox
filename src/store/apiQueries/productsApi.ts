@@ -7,8 +7,8 @@ export const productsApi = createApi({
         baseUrl: "http://localhost:3000"
     }),
     endpoints:(builder) => ({
-        getGameProducts: builder.query<GameProducts, void>({
-            query: (name) => `/${name}`
+        getGameProducts: builder.query<GameProducts, string>({
+            query: (name: string) => `/${name}`
         })
     })
 });

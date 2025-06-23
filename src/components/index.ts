@@ -8,3 +8,4 @@ export * from './LazyImage';
 export * from './ContentGrid';
 export * from './FAQGrid';
 export * from './Breadcrumb';
+export * from './ProductHeader';
