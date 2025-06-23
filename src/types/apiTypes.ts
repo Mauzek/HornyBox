@@ -106,7 +106,7 @@ export interface FAQ {
 export interface GameProducts {
   name: string;
   image: string;
-  category: Category[];
+  category?: Category[];
   type?: Type[];
   products: Product[];
   description: string;
