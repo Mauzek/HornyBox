@@ -25,6 +25,7 @@
     &__title {
         font-size: clamp(1rem, 0.912rem + 0.3756vw, 1.25rem);
         font-weight: 500;
+        line-height: 130%;
         font-family: vars.$title-text;
         color: vars.$text-color;
     }
