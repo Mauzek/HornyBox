@@ -36,10 +36,9 @@ export const HomePage = () => {
   const { data, error} = useGetAssetsQuery();
   
   if (error || data === undefined) return <p>Error</p>;
-  
   const carouselSlides = data.banners.reduce(
     (acc, item) => {
-      if (item.description === null) {
+      if (item.description === undefined) {
         acc.banners.push(item);
       } else {
         acc.articles.push(item);

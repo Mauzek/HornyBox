@@ -8,7 +8,7 @@ export const ArticleSlide: React.FC<ArticleSlideProps> = ({
   isActive,
 }) => {
   const isExternalLink = slide.link && slide.link.startsWith("https");
-  const linkTo = !isExternalLink ? `/games/${slide.gameName.toLowerCase().replace(/\s+/g, "_").replace(/:/g, "")}` : slide.link;
+  const linkTo = !isExternalLink && slide.link.length > 0 ? `/games/${slide.link.toLowerCase().replace(/\s+/g, "_").replace(/:/g, "")}` : slide.link;
   
   const linkContent = (
     <>
