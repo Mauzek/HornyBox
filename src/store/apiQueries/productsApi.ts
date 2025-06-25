@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BASE_URL } from "./config";
 import type { GameProducts } from "../../types";
 
 export const productsApi = createApi({
     reducerPath: "productsApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://hornybox-17db3-default-rtdb.europe-west1.firebasedatabase.app/products"
+        baseUrl: `${BASE_URL}/products`
     }),
     endpoints:(builder) => ({
         getGameProducts: builder.query<GameProducts, string>({
