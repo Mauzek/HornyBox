@@ -9,3 +9,4 @@ export * from './ContentGrid';
 export * from './FAQGrid';
 export * from './Breadcrumb';
 export * from './ProductHeader';
+export * from './ProductGrid';

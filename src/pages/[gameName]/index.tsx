@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useMemo } from "react";
-import { Breadcrumb, ProductHeader } from "../../components";
+import { Breadcrumb, ProductGrid, ProductHeader } from "../../components";
 import { useGetGameProductsQuery } from "../../store";
 
 export const GamePage = () => {
@@ -48,6 +48,9 @@ export const GamePage = () => {
         image={data.image}
         categories={data.category || []}
       />
+      <section style={{display: "flex", marginTop: "25px"}}>
+        <ProductGrid products={productsData || []} />
+      </section>
     </section>
   );
 };

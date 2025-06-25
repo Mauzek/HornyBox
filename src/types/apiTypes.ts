@@ -87,14 +87,14 @@ export interface Product {
   id: number;
   name: string;
   image: string;
-  price: Currency;
+  price: number;
   discountPrice: number;
   category: {
     id: number;
     name: string;
   };
-  poupType: "none" | "bot" | "fullpack" | "explanation";
-  poupData?: string;
+  popupType: "none" | "bot" | "fullpack" | "explanation";
+  popupData?: string;
 }
 
 
