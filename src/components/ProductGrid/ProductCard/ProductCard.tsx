@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./ProductCard.module.scss";
 import { LuPlus, LuMinus, LuTriangleAlert } from "react-icons/lu";
 import { icons } from "../../../assets/icons";
+import { formatPrice } from "../../../utils";
 import type { ProductCardProps } from "./types";
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
@@ -60,7 +61,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
 
           <div className={styles.card__pricing}>
-            <p className={styles.card__price}>{product.price}&nbsp;₽</p>
+            <p className={styles.card__price}>{formatPrice(product.price)}&nbsp;₽</p>
             {product.discountPrice > 0 && (
               <p className={styles.card__discountPrice}>
                 {product.discountPrice}
