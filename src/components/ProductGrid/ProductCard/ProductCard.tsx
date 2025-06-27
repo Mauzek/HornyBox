@@ -1,61 +1,12 @@
 import React from "react";
 import styles from "./ProductCard.module.scss";
-import { LuPlus, LuMinus, LuTriangleAlert } from "react-icons/lu";
-import { icons } from "../../../assets/icons";
+import { LuPlus, LuMinus } from "react-icons/lu";
 import { formatPrice } from "../../../utils";
 import { PopupButton } from "../";
 import type { ProductCardProps } from "./types";
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  let popupButton = null;
-  const isPopup = product.popupType !== 'none';
-  switch (product.popupType) {
-    case "bot":
-      popupButton = (
-        <button
-          className={`${styles.card__popupButton} ${styles["card__popupButton--bot"]}`}
-          type="button"
-          aria-label="Открыть информацию о товаре"
-        >
-          <img
-            src={icons.bot_popup}
-            alt="Bot popup"
-            className={`${styles.card__popupIcon} ${styles["card__popupIcon--bot"]}`}
-          />
-        </button>
-      );
-      break;
-    case "explanation":
-      popupButton = (
-        <button
-          className={`${styles.card__popupButton} ${styles["card__popupButton--explanation"]}`}
-          type="button"
-          aria-label="Открыть информацию о товаре"
-        >
-          <img
-            src={icons.question_popup}
-            alt="Explanation popup"
-            className={`${styles.card__popupIcon} ${styles["card__popupIcon--explanation"]}`}
-          />
-        </button>
-      );
-      break;
-    case "fullpack":
-      popupButton = (
-        <button
-          className={`${styles.card__popupButton} ${styles["card__popupButton--fullpack"]}`}
-          type="button"
-          aria-label="Открыть информацию о товаре"
-        >
-          <LuTriangleAlert
-            className={`${styles.card__popupIcon} ${styles["card__popupIcon--fullpack"]}`}
-          />
-        </button>
-      );
-      break;
-    default:
-      break;
-  }
+  const isPopup = product.popupType !== "none";
 
   return (
     <article className={styles.card}>
@@ -65,7 +16,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           alt={product.name}
           className={styles.card__image}
         />
-        {isPopup && <PopupButton type={product.popupType}/>}
+        {isPopup && <PopupButton type={product.popupType} />}
       </div>
 
       <div className={styles.card__content}>
@@ -77,7 +28,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           <div
             className={`${styles.card__pricing} ${
-              popupButton && styles["card__pricing--popup"]
+              isPopup && styles["card__pricing--popup"]
             }`}
           >
             <p className={styles.card__price}>
@@ -95,7 +46,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <button
             className={styles.card__button}
             type="button"
-            aria-label="Добавить товар в корзину"       
+            aria-label="Добавить товар в корзину"
           >
             <LuPlus className={styles.card__buttonIcon} />
           </button>
@@ -103,7 +54,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div
             className={`${styles.card__button} ${styles.card__button__counter}`}
             aria-label="Изменить количество товара"
-           style={{ display: "none" }}
+            style={{ display: "none" }}
           >
             <button className={styles.card__button}>
               <LuMinus className={styles.card__buttonIcon} />
