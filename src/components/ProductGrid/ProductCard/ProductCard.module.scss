@@ -24,69 +24,6 @@
         padding-top: 1px;
     }
 
-    &__popupButton {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 10px;
-        background-color: vars.$neutral-color-2;
-        padding: 0;
-        margin: 0;
-        width: 30px;
-        height: 30px;
-        position: absolute;
-        right: 15px;
-        bottom: 0px;
-        cursor: pointer;
-        overflow: hidden;
-        transition: background-color 0.2s ease;
-
-        &:hover {
-            background-color: #ffd74768;
-        }
-
-        &--bot {
-            background-color: vars.$orange-color-opacity-2;
-
-        }
-
-        &--explanation {
-            background-color: vars.$neutral-color-2;
-
-            &:hover {
-                background-color: #343434;
-                ;
-            }
-
-        }
-
-        &--fullpack {
-            background-color: vars.$orange-color-opacity-2;
-        }
-
-    }
-
-    &__popupIcon {
-        width: 100%;
-        height: 100%;
-        color: vars.$orange-color-2;
-
-        &--bot {
-            width: 25px;
-            height: 26px;
-        }
-
-        &--explanation {
-            width: 30px;
-            height: 30px;
-        }
-
-        &--fullpack {
-            width: 20px;
-            height: 20px;
-        }
-    }
-
     &__content {
         display: flex;
         flex-direction: column;

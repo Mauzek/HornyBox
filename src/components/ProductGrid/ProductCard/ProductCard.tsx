@@ -3,11 +3,12 @@ import styles from "./ProductCard.module.scss";
 import { LuPlus, LuMinus, LuTriangleAlert } from "react-icons/lu";
 import { icons } from "../../../assets/icons";
 import { formatPrice } from "../../../utils";
+import { PopupButton } from "../";
 import type { ProductCardProps } from "./types";
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   let popupButton = null;
-
+  const isPopup = product.popupType !== 'none';
   switch (product.popupType) {
     case "bot":
       popupButton = (
@@ -64,7 +65,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           alt={product.name}
           className={styles.card__image}
         />
-        {popupButton && popupButton}
+        {isPopup && <PopupButton type={product.popupType}/>}
       </div>
 
       <div className={styles.card__content}>
