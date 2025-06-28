@@ -49,7 +49,7 @@ export const GamePage = () => {
         categories={data.category || []}
       />
       <section style={{display: "flex", marginTop: "25px"}}>
-        <ProductGrid products={productsData || []} />
+        <ProductGrid products={productsData || []} gameName={gameName!} />
       </section>
     </section>
   );
