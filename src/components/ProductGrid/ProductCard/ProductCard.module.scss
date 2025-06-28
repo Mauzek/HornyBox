@@ -31,6 +31,7 @@
     }
 
     &__titleWrapp {
+        display: -webkit-box;
         line-clamp: 2;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -48,7 +49,7 @@
         }
     }
 
-    &__title {
+    &__title {      
         font-family: vars.$title-text;
         font-weight: 400;
         text-align: center;
@@ -133,8 +134,8 @@
 
         &__counter {
             display: grid;
-            grid-template-columns: repeat(3, auto); // Все элементы по размеру контента
-            justify-content: space-between; // Распределяет элементы по краям и центру
+            grid-template-columns: repeat(3, auto); 
+            justify-content: space-between; 
             font-weight: 500;
             padding: 10px 15px;
             color: vars.$text-color;
