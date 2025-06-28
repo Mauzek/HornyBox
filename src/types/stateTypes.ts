@@ -22,9 +22,16 @@ export interface Cart {
 export interface CartItem {
   id: number;
   name: string;
-  quantity: number;
+  image: string;
   price: number;
-  category: string;
+  discountPrice: number;
+  category: {
+    id: number;
+    name: string;
+  };
+  popupType: "none" | "bot" | "fullpack" | "explanation";
+  popupData?: string;
+  quantity: number;
 }
 
 export interface CartMetadata {
