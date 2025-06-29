@@ -17,6 +17,16 @@ import telegram from './tg-icon.svg';
 import videos from './videos-category.svg';
 import vk from './vk-icon.svg';
 
+import Russia from './Russia-flag.svg';
+import Indonesia from './Indonesia-flag.svg';
+import Malaysia from './Malaysia-flag.svg';
+
+export const flags = {
+    Russia,
+    Indonesia,
+    Malaysia,
+}
+
 export const icons = {
     articles,
     bot,
@@ -39,3 +49,4 @@ export const icons = {
 } as const;
 
 export type IconName = keyof typeof icons;
+export type FlagName = keyof typeof flags;

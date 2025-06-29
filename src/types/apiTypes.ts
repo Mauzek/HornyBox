@@ -1,3 +1,5 @@
+import type { FlagName } from "../assets";
+
 export interface Article {
   id: number;
   title: string;
@@ -78,7 +80,7 @@ export interface Category{
 
 export interface Type {
   id: number;
-  flag?: string;
+  flag?: FlagName;
   name: string;
   link: string;
 }
