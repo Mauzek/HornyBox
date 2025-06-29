@@ -40,6 +40,10 @@ a {
   font-weight: 500;
   color: vars.$green-color;
   text-decoration: inherit;
+
+  &:focus{
+    outline: vars.$green-color 2px solid;
+  }
 }
 
 body {
@@ -76,6 +80,10 @@ button {
   background-color: vars.$button-primary-background;
   cursor: pointer;
   transition: border-color 0.25s;
+
+  &:focus{
+    outline: vars.$green-color 2px solid;
+  }
 }
 
 @media (prefers-color-scheme: light) {
