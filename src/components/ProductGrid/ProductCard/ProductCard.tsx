@@ -9,18 +9,26 @@ import {
   removeItemFromCart,
   type RootState,
 } from "../../../store";
+import { usePopup } from "../../../hooks";
+import { ProductCardInfo } from "../../Popups";
 
 export const ProductCard: React.FC<ProductCardProps> = React.memo(
   ({ product, gameName }) => {
     const isPopup = product.popupType !== "none";
     const dispatch = useDispatch();
-
+    const { isVisible, toggle, hide } = usePopup();
     const quantity = useSelector((state: RootState) => {
       if (!gameName) return 0;
       const gameCart = state.cart[gameName];
       const cartItem = gameCart?.items.find((item) => item.id === product.id);
       return cartItem?.quantity || 0;
     });
+
+    const handleToggle = (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggle();
+    };
 
     const handleAddToCart = useCallback(() => {
       if (!gameName) return;
@@ -51,7 +59,9 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
             alt={product.name}
             className={styles.card__image}
           />
-          {isPopup && <PopupButton type={product.popupType} />}
+          {isPopup && (
+            <PopupButton type={product.popupType} onClick={handleToggle} />
+          )}
         </div>
         <div className={styles.card__content}>
           <div className={styles.card__info}>
@@ -80,6 +90,14 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
             removeFromCart={handleRemoveFromCart}
           />
         </div>
+        {product.popupData && (
+          <ProductCardInfo
+            isOpen={isVisible}
+            content={product.popupData}
+            onClose={hide}
+            type={product.popupType}
+          />
+        )}
       </article>
     );
   }
