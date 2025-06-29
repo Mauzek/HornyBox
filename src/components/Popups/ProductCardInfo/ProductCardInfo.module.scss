@@ -1,0 +1,135 @@
+@use '../../../styles/variables' as vars;
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.83);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+
+    &--visible {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    &--hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+.popup {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: relative;
+    background: vars.$page-background-color;
+    border: 2px solid vars.$neutral-color-dark-2;
+    border-radius: 20px;
+    transform: scale(0.8);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    padding: 25px;
+    max-width: 512px;
+
+    &--visible {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    &--hidden {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    &__close {
+        display: flex;
+        padding: 0;
+        background: none;
+        color: vars.$neutral-color-dark-2;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        &_icon {
+            width: 25px;
+            height: 25px;
+            color: vars.$neutral-color-dark-3;
+            transition: color 0.2s ease;
+
+            &:hover {
+                color: vars.$text-color;
+            }
+        }
+    }
+
+    &__content {
+        text-align: left;
+
+        h3 {
+            font-size: clamp(1.25rem, 1.14rem + .4695vw, 1.5625rem);
+            font-weight: 400;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        p {
+            font-size: clamp(13px, .7465rem + .2817vw, 16px);
+            font-weight: 500;
+            line-height: 1.25rem;
+            margin-top: 1.25em;
+            margin-bottom: 1.25em;
+        }
+    }
+
+    &__button {
+        background-color: vars.$neutral-color-2;
+        padding: 5px 20px;
+        height: 50px;
+        transition: background-color 0.15s ease;
+
+        &--green {
+            color: vars.$green-color;
+        }
+
+        &--white {
+            color: vars.$text-color;
+        }
+
+        &_container {
+            display: flex;
+            align-self: start;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        &:hover {
+            background-color: vars.$neutral-color-dark-4;
+        }
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        width: 100%;
+        margin-top: 20px;
+        background-color: vars.$neutral-color-dark-2;
+        transition: background-color 0.15s ease;
+        
+        &:hover {
+            background-color: vars.$neutral-color-2;
+        }      
+    }
+}
