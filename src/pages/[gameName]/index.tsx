@@ -1,6 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useMemo } from "react";
-import { Breadcrumb, ProductGrid, ProductHeader } from "../../components";
+import {
+  Breadcrumb,
+  FAQGrid,
+  ProductGrid,
+  ProductHeader,
+  Section,
+} from "../../components";
 import { useGetGameProductsQuery } from "../../store";
 
 export const GamePage = () => {
@@ -47,10 +53,15 @@ export const GamePage = () => {
         title={data.name}
         image={data.image}
         categories={data.category || []}
+        types={data.type || []}
       />
-      <section style={{display: "flex", marginTop: "25px"}}>
+      <section style={{ display: "flex" }}>
         <ProductGrid products={productsData || []} gameName={gameName!} />
       </section>
+
+      <Section title="FAQ" id="faq">
+        <FAQGrid items={data.faq} />
+      </Section>
     </section>
   );
 };
