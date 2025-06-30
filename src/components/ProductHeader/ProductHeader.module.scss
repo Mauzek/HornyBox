@@ -20,6 +20,7 @@
         border-radius: 10px;
         aspect-ratio: 1/1;
         width: 125px;
+        height: 125px;
         display: none;
 
         @media screen and (min-width: 768px) {
@@ -28,27 +29,40 @@
     }
 
     &__flag {
-        height: 16px;
-        width: 16px;
+        height: 1em;
+        width: 1em;
         margin: 0px 4px;
+        max-width: 100%;
     }
 
     &__nav {
         display: grid;
         gap: 11px;
-        grid-template-rows: auto auto;
-        flex: 1;
-        min-width: 0;
     }
 
     &__title {
         display: flex;
         align-items: center;
-        max-height: 62.5px;
         font-weight: 500;
         line-height: 130%;
         font-size: clamp(2.1875rem, 2.0775rem + .4695vw, 2.5rem);
         text-align: left;
+    }
+
+    &__desktop {
+        display: none;
+
+        @media screen and (min-width: 480px) {
+            display: block;
+        }
+    }
+
+    &__mobile {
+        display: block;
+
+        @media screen and (min-width: 480px) {
+            display: none;
+        }
     }
 
     &__list {
@@ -62,6 +76,7 @@
         -webkit-overflow-scrolling: touch;
         -ms-overflow-style: none;
         scrollbar-width: none;
+        border-radius: 10px;
 
         &::-webkit-scrollbar {
             display: none;
@@ -69,9 +84,11 @@
 
         &--types {
             background-color: vars.$neutral-color-dark-2;
-            width: fit-content;
-            border-radius: 10px;
             gap: 0;
+
+            @media screen and (min-width: 600px) {
+                width: fit-content;
+            }
         }
     }
 
@@ -90,7 +107,6 @@
         transition: all 0.2s ease;
         box-sizing: border-box;
         white-space: nowrap;
-        flex-shrink: 0;
 
         &:hover {
             color: vars.$green-color;
@@ -104,6 +120,7 @@
         &--type {
             padding: 0 10px;
             color: vars.$text-neutral;
+            font-size: clamp(13px, .7465rem + .2817vw, 16px);
 
             &:hover {
                 color: vars.$text-color;
@@ -113,6 +130,117 @@
             &.header__link--active {
                 color: vars.$text-color;
             }
+        }
+    }
+
+    @media (max-width: 639px) {
+        margin-top: 0;
+    }
+}
+
+
+.dropdown {
+    position: relative;
+
+    &__button {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        transform: translateY(3px);
+        height: 40px;
+        padding: 0;
+        background-color: transparent;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        color: vars.$green-color;
+        font-weight: 500;
+        font-size: 16px;
+        transition: all 0.2s ease;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__current {
+        display: flex;
+        align-items: center;
+    }
+
+    &__arrow {
+        transition: transform 0.2s ease;
+        color: vars.$green-color;
+        width: 20px;
+        height: 10px;
+
+        &--open {
+            transform: rotate(180deg);
+        }
+    }
+
+    &__menu {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        position: absolute;
+        top: calc(100% + 5px);
+        left: 0;
+        z-index: 1000;
+        max-height: 300px;
+        min-width: 250px;
+        width: fit-content;
+        background-color: vars.$neutral-color-4;
+        border-radius: 10px;
+        padding: 10px 15px;
+        border: 1px solid vars.$neutral-color-dark-2;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -2px rgba(0, 0, 0, .1);
+        ;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: all 0.2s ease;
+        overflow-y: auto;
+
+        &--open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: vars.$green-color;
+            border-radius: 2px;
+        }
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 5px 20px;
+        height: 50px;
+        color: vars.$text-color;
+        background-color: vars.$neutral-color-2;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+
+        &--active {
+            color: vars.$green-color;
+            background-color: vars.$green-color-opacity-2;
+        }
+
+        .header__flag {
+            margin-right: 8px;
         }
     }
 }

@@ -31,8 +31,6 @@ export const GamePage = () => {
     return data.products;
   }, [data?.products, category, categoryData]);
 
-  console.log(productsData);
-
   useEffect(() => {
     if (!data?.name) return;
     const title =
