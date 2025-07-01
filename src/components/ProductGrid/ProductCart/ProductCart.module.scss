@@ -1,0 +1,81 @@
+@use '../../../styles/variables' as vars;
+
+.cart {
+    display: flex;
+    position: sticky;
+    flex-direction: column;
+    max-width: 360px;
+    width: 100%;
+    max-height: 500px;
+    height: fit-content;
+    background-color: vars.$neutral-color-4;
+    border: 2px solid vars.$neutral-color-dark-2;
+    border-radius: 10px;
+    padding: 15px;
+    gap: 11px;
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        font-family: vars.$title-text;
+        font-size: clamp(13px, .7465rem + .2817vw, 16px);
+        line-height: 130%;
+    }
+
+    &__button--clear {
+        padding: 0;
+        background-color: transparent;
+        color: #404040;
+
+        svg {
+            width: 24px;
+            height: 24px;
+            transition: color 0.15s ease-in-out;
+        }
+
+        &:hover {
+            svg {
+                color: vars.$green-color;
+            }
+        }
+    }
+
+    &__total_quantity {
+        font-size: 13px;
+        text-align: left;
+        font-weight: 500;
+    }
+
+    &__total_price{
+        color: vars.$green-color;
+    }
+
+    &__empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 15px;
+        background-color: vars.$neutral-color-dark-2;
+        border-radius: 10px;
+        min-height: 50px;
+
+        &_text {
+            color: vars.$text-neutral;
+            font-size: clamp(13px, .7465rem + .2817vw, 16px);
+            font-weight: 500;
+        }
+    }
+
+    &__button {
+        width: 100%;
+        min-height: 50px;
+        padding: 10px 15px;
+        background-color: vars.$neutral-color-dark-2;
+        color: vars.$button-disabled-text;
+        font-size: clamp(13px, .7465rem + .2817vw, 16px);
+        font-weight: 500;
+    }
+}

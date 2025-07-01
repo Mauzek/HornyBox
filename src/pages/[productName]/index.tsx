@@ -3,6 +3,7 @@ import { useEffect, useMemo } from "react";
 import {
   Breadcrumb,
   FAQGrid,
+  ProductCart,
   ProductGrid,
   ProductHeader,
   Section,
@@ -53,8 +54,9 @@ export const ProductPage = () => {
         categories={data.category || []}
         types={data.type || []}
       />
-      <section style={{ display: "flex" }}>
+      <section style={{ display: "flex", gap: "25px" }}>
         <ProductGrid products={productsData || []} productName={productName!} />
+        <ProductCart gameName={productName!} />
       </section>
 
       {data.faq && (
