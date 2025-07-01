@@ -7,13 +7,13 @@ import {
   ProductHeader,
   Section,
 } from "../../components";
-import { useGetGameProductsQuery } from "../../store";
+import { useGetProductsQuery } from "../../store";
 
-export const GamePage = () => {
+export const ProductPage = () => {
   const params = useParams();
-  const { gameName, category } = params;
-  const { data, isLoading } = useGetGameProductsQuery(gameName!, {
-    skip: !gameName,
+  const { productName, category } = params;
+  const { data, isLoading } = useGetProductsQuery(productName!, {
+    skip: !productName,
   });
 
   const categoryData = useMemo(() => {
@@ -54,12 +54,14 @@ export const GamePage = () => {
         types={data.type || []}
       />
       <section style={{ display: "flex" }}>
-        <ProductGrid products={productsData || []} gameName={gameName!} />
+        <ProductGrid products={productsData || []} productName={productName!} />
       </section>
 
-      <Section title="FAQ" id="faq">
-        <FAQGrid items={data.faq} />
-      </Section>
+      {data.faq && (
+        <Section title="FAQ" id="faq">
+          <FAQGrid items={data.faq} />
+        </Section>
+      )}
     </section>
   );
 };

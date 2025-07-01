@@ -10,10 +10,9 @@ import {
   FAQPage,
   AboutPage,
   PoliticsPage,
-  GamePage,
+  ProductPage,
   NotFoundPage,
   SteamPage,
-  ServicePage,
 } from "./pages";
 
 function App() {
@@ -35,10 +34,10 @@ function App() {
         <Route path="/politics" element={<PoliticsPage />} />
 
         {/* Динамические маршруты для игр */}
-        <Route path="/games/:gameName/:category?" element={<GamePage />} />
+        <Route path="/games/:productName/:category?" element={<ProductPage />} />
 
         <Route path="/services/steam" element={<SteamPage />} />
-        <Route path="/services/:serviceName" element={<ServicePage />} />
+        <Route path="/services/:productName" element={<ProductPage />} />
 
         {/* Страница 404 */}
         <Route path="*" element={<NotFoundPage />} />

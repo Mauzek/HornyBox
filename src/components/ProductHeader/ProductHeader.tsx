@@ -11,7 +11,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({
   categories,
   types = [],
 }) => {
-  const { gameName, category } = useParams();
+  const { productName, category } = useParams();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownButtonRef = useRef<HTMLButtonElement>(null);
@@ -29,7 +29,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({
   ];
   const currentCategory = allCategory.find((item) => item.link === category);
 
-  const activeType = types.find((item) => gameName === item.link) || types[0];
+  const activeType = types.find((item) => productName === item.link) || types[0];
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -50,8 +50,8 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({
           <Link
             to={
               item.link
-                ? `/games/${gameName}/${item.link}`
-                : `/games/${gameName}`
+                ? `/games/${productName}/${item.link}`
+                : `/games/${productName}`
             }
             className={`${styles.header__link} ${
               category === item.link || (!category && !item.link)
@@ -69,7 +69,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({
   const typesList = types.length > 0 && (
     <ul className={`${styles.header__list} ${styles["header__list--types"]}`}>
       {types.map((item) => {
-        const isActive = gameName === item.link || (!gameName && !item.link);
+        const isActive = productName === item.link || (!productName && !item.link);
 
         return (
           <li key={item.id} className={styles.header__item}>
@@ -148,7 +148,7 @@ export const ProductHeader: React.FC<ProductHeaderProps> = ({
         }`}
       >
         {types.map((item) => {
-          const isActive = gameName === item.link || (!gameName && !item.link);
+          const isActive = productName === item.link || (!productName && !item.link);
 
           return (
             <Link

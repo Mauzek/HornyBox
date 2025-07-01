@@ -13,13 +13,13 @@ import { usePopup } from "../../../hooks";
 import { ProductCardInfo } from "../../Popups";
 
 export const ProductCard: React.FC<ProductCardProps> = React.memo(
-  ({ product, gameName }) => {
+  ({ product, productName }) => {
     const isPopup = product.popupType !== "none";
     const dispatch = useDispatch();
     const { isVisible, toggle, hide } = usePopup();
     const quantity = useSelector((state: RootState) => {
-      if (!gameName) return 0;
-      const gameCart = state.cart[gameName];
+      if (!productName) return 0;
+      const gameCart = state.cart[productName];
       const cartItem = gameCart?.items.find((item) => item.id === product.id);
       return cartItem?.quantity || 0;
     });
@@ -31,25 +31,25 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
     };
 
     const handleAddToCart = useCallback(() => {
-      if (!gameName) return;
+      if (!productName) return;
       dispatch(
         addItemToCart({
-          gameName,
+          productName,
           item: { ...product, quantity: 1 },
         })
       );
-    }, [gameName, dispatch, product]);
+    }, [productName, dispatch, product]);
 
     const handleRemoveFromCart = useCallback(() => {
-      if (!gameName) return;
+      if (!productName) return;
       dispatch(
         removeItemFromCart({
-          gameName,
+          productName,
           itemId: product.id,
           quantity: 1,
         })
       );
-    }, [gameName, dispatch, product]);
+    }, [productName, dispatch, product]);
 
     return (
       <article className={styles.card}>

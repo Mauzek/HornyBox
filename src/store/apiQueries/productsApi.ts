@@ -8,10 +8,10 @@ export const productsApi = createApi({
         baseUrl: `${BASE_URL}/products`
     }),
     endpoints:(builder) => ({
-        getGameProducts: builder.query<GameProducts, string>({
+        getProducts: builder.query<GameProducts, string>({
             query: (name: string) => `/${name}.json`,
         })
     })
 });
 
-export const { useGetGameProductsQuery } = productsApi;
+export const { useGetProductsQuery } = productsApi;

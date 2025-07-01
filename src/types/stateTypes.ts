@@ -13,7 +13,7 @@ export interface UserData {
 }
 
 export interface Cart {
-  [gameName: string]: {
+  [productName: string]: {
     items: CartItem[]; 
     metadata: CartMetadata; 
   };

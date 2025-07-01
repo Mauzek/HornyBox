@@ -3,7 +3,7 @@ export * from './Content';
 export * from './Profile';
 export * from './Home';
 export * from './Videos';
-export * from './[gameName]';
+export * from './[productName]';
 export * from './FAQ';
 export * from './About';
 export * from './Politics';

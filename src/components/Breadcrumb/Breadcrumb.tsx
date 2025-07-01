@@ -7,10 +7,10 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({lable, breadcrumb}) => {
   
     const buildBreadcrumbs = () => {
     const items = [{ label: "Главная", path: "/" }];
-    if (breadcrumb.gameName) {
+    if (breadcrumb.productName) {
       items.push({
         label: lable,
-        path: `/${breadcrumb.gameName}`
+        path: `/${breadcrumb.productName}`
       });
     }
     return items;
