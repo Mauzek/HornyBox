@@ -66,7 +66,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
         <div className={styles.card__content}>
           <div className={styles.card__info}>
             <div className={styles.card__titleWrapp}>
-              <h3 className={styles.card__title}>{product.name}</h3>
+              <h3 className={`${styles.card__title} ${ product.category.name && styles['card__title--line-clamp']}`}>{product.name}</h3>
               <p className={styles.card__category}>{product.category.name}</p>
             </div>
             <div

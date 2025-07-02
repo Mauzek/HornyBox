@@ -50,13 +50,21 @@
         }
     }
 
-    &__title {      
+    &__title {
         font-family: vars.$title-text;
         font-weight: 400;
         text-align: center;
         font-size: clamp(13px, .7465rem + .2817vw, 16px);
         line-height: 130%;
         color: vars.$green-color;
+
+        &--line-clamp {
+            display: -webkit-box;
+            line-clamp: 1;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     }
 
     &__category {
@@ -107,64 +115,5 @@
         font-size: 14px;
         text-decoration: line-through;
         margin: 0;
-    }
-
-    &__actions {
-        padding: 15px 10px 10px;
-        padding-top: 0;
-    }
-
-    &__button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        border-radius: 8px;
-        font-weight: 500;
-        transition: colors 0.2s ease;
-        border: none;
-        cursor: pointer;
-        color: var(--buttons-button-ghost-text, #ffffff);
-        padding: 4px 16px;
-        width: 100%;
-        gap: 0;
-        height: 44px;
-        background-color: vars.$neutral-color-dark-2;
-
-        &__counter {
-            display: grid;
-            grid-template-columns: repeat(3, auto); 
-            justify-content: space-between; 
-            font-weight: 500;
-            padding: 10px 15px;
-            color: vars.$text-color;
-            align-items: center;
-            background-color: vars.$button-secondary-background;
-
-            button {
-                padding: 0;
-                height: 14px;
-                width: 24px;
-
-                svg {
-                    width: 14px;
-                    height: 14px;
-                }
-
-                &:hover {
-                    svg {                       
-                        filter:grayscale(1);
-                    }
-                }
-            }
-        }
-    }
-
-    &__buttonIcon {
-        width: 24px;
-        height: 24px;
-        color: vars.$green-color;
     }
 }
