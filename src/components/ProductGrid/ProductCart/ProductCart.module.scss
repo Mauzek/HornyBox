@@ -3,8 +3,10 @@
 .cart {
     display: flex;
     position: sticky;
+    top: 80px;
     flex-direction: column;
     max-width: 360px;
+    min-width: 360px;
     width: 100%;
     max-height: 500px;
     height: fit-content;
@@ -12,11 +14,17 @@
     border: 2px solid vars.$neutral-color-dark-2;
     border-radius: 10px;
     padding: 15px;
-    gap: 11px;
+    animation: borderFlash 1s ease-in-out;
 
     &__header {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        margin-bottom: 10px;
+
+        &_content {
+            display: flex;
+            justify-content: space-between;
+        }
     }
 
     &__title {
@@ -29,6 +37,7 @@
         padding: 0;
         background-color: transparent;
         color: #404040;
+        height: 24px;
 
         svg {
             width: 24px;
@@ -44,12 +53,14 @@
     }
 
     &__total_quantity {
+        margin-top: 4px;
+        margin-bottom: 1px;
         font-size: 13px;
         text-align: left;
         font-weight: 500;
     }
 
-    &__total_price{
+    &__total_price {
         color: vars.$green-color;
     }
 
@@ -61,6 +72,7 @@
         background-color: vars.$neutral-color-dark-2;
         border-radius: 10px;
         min-height: 50px;
+        margin-top: 15px;
 
         &_text {
             color: vars.$text-neutral;
@@ -69,13 +81,45 @@
         }
     }
 
+    &__items {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        overflow-y: auto;
+        max-height: 290px;
+    }
+
     &__button {
         width: 100%;
         min-height: 50px;
         padding: 10px 15px;
-        background-color: vars.$neutral-color-dark-2;
-        color: vars.$button-disabled-text;
-        font-size: clamp(13px, .7465rem + .2817vw, 16px);
+        background-color: vars.$green-color;
+        color: vars.$neutral-color-4;
         font-weight: 500;
+        transition: background-color 0.3s ease-in-out;
+        margin-top: 10px;
+
+        &--empty {
+            background-color: vars.$neutral-color-dark-2;
+            color: vars.$button-disabled-text;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        display: none;
+    }
+
+    @keyframes borderFlash {
+        0% {
+            border-color: vars.$neutral-color-dark-2;
+        }
+
+        50% {
+            border-color: vars.$green-color;
+        }
+
+        100% {
+            border-color: vars.$neutral-color-dark-2;
+        }
     }
 }
