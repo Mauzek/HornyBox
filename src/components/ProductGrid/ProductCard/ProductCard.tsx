@@ -22,13 +22,13 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
       const gameCart = state.cart[productName];
       const cartItem = gameCart?.items.find((item) => item.id === product.id);
       return cartItem?.quantity || 0;
-    });
+    },(left, right) => left === right);
 
-    const handleToggle = (e: React.MouseEvent) => {
+    const handleToggle = useCallback((e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
       toggle();
-    };
+    }, [toggle]);
 
     const handleAddToCart = useCallback(() => {
       if (!productName) return;
@@ -50,6 +50,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
         })
       );
     }, [productName, dispatch, product]);
+    console.log('render card ' + product.name)
 
     return (
       <article className={styles.card}>
