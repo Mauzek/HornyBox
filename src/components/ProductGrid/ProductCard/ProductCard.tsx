@@ -87,7 +87,7 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
           </div>
           <ProductActions
             initialQuantity={quantity}
-            addToCart={handleAddToCart}
+            addToCart={product.popupType === "bot" ? handleToggle : handleAddToCart}
             removeFromCart={handleRemoveFromCart}
           />
         </div>

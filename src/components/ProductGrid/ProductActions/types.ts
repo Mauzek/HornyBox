@@ -1,5 +1,5 @@
 export interface ProductActionsProps {
-  addToCart: () => void;
+  addToCart: (e: React.MouseEvent) => void;
   removeFromCart: () => void;
   initialQuantity: number;
 }
