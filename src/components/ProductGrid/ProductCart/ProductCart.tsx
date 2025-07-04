@@ -6,8 +6,9 @@ import { clearProductCart, type RootState } from "../../../store";
 import type { ProductCartProps } from "./types";
 import { ProductCartItem } from "../ProductCartItem";
 import CountUp from 'react-countup';
+import { PaywallForm } from "../../Popups";
 
-export const ProductCart: React.FC<ProductCartProps> = ({ productName }) => {
+export const ProductCart: React.FC<ProductCartProps> = ({ productName, payment }) => {
   const dispatch = useDispatch();
 
   const gameCart = useSelector((state: RootState) => state.cart[productName]);
@@ -93,6 +94,8 @@ export const ProductCart: React.FC<ProductCartProps> = ({ productName }) => {
       >
         Перейти к оплате
       </button>
+
+      <PaywallForm payment={payment} totalPrice={cartData.price} cartItems={cartData.items} productName={productName} />
     </div>
   );
 };

@@ -113,6 +113,7 @@ export interface GameProducts {
   products: Product[];
   description: string;
   faq: FAQ[];
+  payment: 'uid' | 'email'; 
 }
 
 export interface Currency {
