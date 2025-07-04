@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useRef, useEffect } from "react";
 import { LuTrash } from "react-icons/lu";
 import styles from "./ProductCart.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { clearProductCart, type RootState } from "../../../store";
 import type { ProductCartProps } from "./types";
 import { ProductCartItem } from "../ProductCartItem";
-import { formatPrice } from "../../../utils";
+import CountUp from 'react-countup';
 
 export const ProductCart: React.FC<ProductCartProps> = ({ productName }) => {
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ export const ProductCart: React.FC<ProductCartProps> = ({ productName }) => {
     const quantity = gameCart ? gameCart.metadata.totalQuantity : 0;
     const items = gameCart ? gameCart.items : [];
     const isEmpty = quantity === 0;
-
     let productsQuantity = null;
     if (quantity === 1) {
       productsQuantity = "1 товар";
@@ -26,13 +25,19 @@ export const ProductCart: React.FC<ProductCartProps> = ({ productName }) => {
     } else {
       productsQuantity = `${quantity} товаров`;
     }
-
+    
     return { price, quantity, items, isEmpty, productsQuantity };
   }, [gameCart]);
+  
+  const prevPriceRef = useRef<number>(cartData.price);
+  useEffect(() => {
+    prevPriceRef.current = cartData.price;
+  }, [cartData.price]);
 
   const handleClearCart = useCallback(() => {
     dispatch(clearProductCart(productName));
   }, [dispatch, productName]);
+
   const reverseItems = useMemo(() => {
     return cartData.items.slice().reverse();
   }, [cartData.items]);
@@ -45,7 +50,12 @@ export const ProductCart: React.FC<ProductCartProps> = ({ productName }) => {
             Корзина
             <span className={styles.cart__total_price}>
               {" "}
-              {formatPrice(cartData.price)}&nbsp;₽
+              <CountUp
+                start={prevPriceRef.current}
+                end={cartData.price}
+                duration={0.6}
+                separator=" "
+              /> ₽
             </span>
           </p>
           <button
@@ -67,16 +77,15 @@ export const ProductCart: React.FC<ProductCartProps> = ({ productName }) => {
       </div>
 
       <div className={styles.cart__items}>
-        {reverseItems.map((item) => {
-          return (
-            <ProductCartItem
-              key={item.id}
-              product={item}
-              productName={productName}
-            />
-          );
-        })}
+        {reverseItems.map((item) => (
+          <ProductCartItem
+            key={item.id}
+            product={item}
+            productName={productName}
+          />
+        ))}
       </div>
+
       <button
         className={`${styles.cart__button} ${
           cartData.isEmpty && styles["cart__button--empty"]
