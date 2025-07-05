@@ -1,9 +1,10 @@
-import type { CartItem } from "../../../types";
+import type { CartItem, Payments } from "../../../types";
 
 export interface PaywallFormProps {
-  onClose?: () => void;
+  onClose: () => void;
   cartItems: CartItem[];
   totalPrice: number;
-  payment: 'uid' | 'email';
+  payments: Payments;
   productName: string;
+  isOpen: boolean;
 }
