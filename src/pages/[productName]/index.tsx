@@ -56,7 +56,7 @@ export const ProductPage = () => {
       />
       <section style={{ display: "flex", gap: "25px" }}>
         <ProductGrid products={productsData || []} productName={productName!} />
-        <ProductCart productName={productName!} payment={data.payment}/>
+        <ProductCart productName={productName!} payments={data.payments}/>
       </section>
 
       {data.faq && (

@@ -5,12 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearProductCart, type RootState } from "../../../store";
 import type { ProductCartProps } from "./types";
 import { ProductCartItem } from "../ProductCartItem";
-import CountUp from 'react-countup';
+import CountUp from "react-countup";
 import { PaywallForm } from "../../Popups";
+import { usePopup } from "../../../hooks";
 
-export const ProductCart: React.FC<ProductCartProps> = ({ productName, payment }) => {
+export const ProductCart: React.FC<ProductCartProps> = ({
+  productName,
+  payments,
+}) => {
   const dispatch = useDispatch();
-
+  const { isVisible, toggle, hide } = usePopup();
   const gameCart = useSelector((state: RootState) => state.cart[productName]);
 
   const cartData = useMemo(() => {
@@ -26,10 +30,10 @@ export const ProductCart: React.FC<ProductCartProps> = ({ productName, payment }
     } else {
       productsQuantity = `${quantity} товаров`;
     }
-    
+
     return { price, quantity, items, isEmpty, productsQuantity };
   }, [gameCart]);
-  
+
   const prevPriceRef = useRef<number>(cartData.price);
   useEffect(() => {
     prevPriceRef.current = cartData.price;
@@ -56,7 +60,8 @@ export const ProductCart: React.FC<ProductCartProps> = ({ productName, payment }
                 end={cartData.price}
                 duration={0.6}
                 separator=" "
-              /> ₽
+              />{" "}
+              ₽
             </span>
           </p>
           <button
@@ -91,11 +96,19 @@ export const ProductCart: React.FC<ProductCartProps> = ({ productName, payment }
         className={`${styles.cart__button} ${
           cartData.isEmpty && styles["cart__button--empty"]
         }`}
+        onClick={toggle}
       >
         Перейти к оплате
       </button>
 
-      <PaywallForm payment={payment} totalPrice={cartData.price} cartItems={cartData.items} productName={productName} />
+      <PaywallForm
+        payments={payments}
+        totalPrice={cartData.price}
+        cartItems={cartData.items}
+        productName={productName}
+        isOpen={isVisible}
+        onClose={hide}
+      />
     </div>
   );
 };

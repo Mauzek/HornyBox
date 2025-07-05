@@ -1,4 +1,6 @@
+import type { Payments } from "../../../types";
+
 export interface ProductCartProps {
   productName: string;
-  payment: 'uid' | 'email';
+  payments: Payments
 }
