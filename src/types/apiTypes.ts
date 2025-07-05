@@ -113,7 +113,18 @@ export interface GameProducts {
   products: Product[];
   description: string;
   faq: FAQ[];
-  payment: 'uid' | 'email'; 
+  payments: Payments
+}
+
+export interface Payments{
+  type:  'uid' | 'email';
+  methods: Payment[];
+}
+
+export interface Payment {
+  id: number;
+  name: string;
+  icon: string;
 }
 
 export interface Currency {
