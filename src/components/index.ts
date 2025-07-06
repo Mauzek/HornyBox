@@ -10,3 +10,6 @@ export * from './FAQGrid';
 export * from './Breadcrumb';
 export * from './ProductHeader';
 export * from './ProductGrid';
+export * from './HelpTooltip';
+export * from './FavouriteHelper';
+export * from './ProductGrid';
