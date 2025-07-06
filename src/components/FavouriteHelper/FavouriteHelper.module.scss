@@ -1,0 +1,53 @@
+@use '../../styles/variables' as vars;
+
+.support {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 0;
+    padding-right: 5px;
+    margin-bottom: -10px;
+
+    @media (min-width: 640px) {
+        padding: 50px 5px 0;
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 5px;
+        background-color: vars.$neutral-color-dark-2;
+
+        svg {
+            width: 24px;
+            height: auto;
+        }
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+
+        p {
+            font-family: vars.$body-text;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: normal;
+            color: vars.$text-neutral;
+            margin: 0;
+        }
+
+        a {
+            color: #6f8e00;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    }
+}
