@@ -1,0 +1,53 @@
+@use '../../../styles/variables' as vars;
+
+.method {
+    display: inline-flex;
+    height: 100%;
+    border-radius: 10px;
+    font-size: clamp(13px, .7465rem + .2817vw, 16px);
+    font-weight: 500;
+    border: 2px solid transparent;
+    transition: colors 0.2s;
+    background-color: vars.$neutral-color-dark-2;
+    padding: 0 20px 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover {
+        background-color: rgba(200, 255, 0, .15);
+    }
+
+    &--active {
+        border-color: vars.$green-color;
+    }
+
+    &__content {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    &__icon {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+    }
+
+    &__text {
+        font-family: vars.$body-text;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 130%;
+        color: vars.$text-color;
+        transition: color 0.2s ease-in-out;
+        margin: 0;
+
+        .method:hover & {
+            color: vars.$green-color;
+        }
+    }
+
+}
