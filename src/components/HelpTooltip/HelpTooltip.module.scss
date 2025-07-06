@@ -1,0 +1,52 @@
+ @use '../../styles/variables' as vars;
+
+ .tooltip {
+     height: 100%;
+
+     &__button {
+         display: flex;
+         align-self: start;
+         align-items: center;
+         justify-content: center;
+         border: none;
+         border-radius: 5px;
+         width: 21px;
+         height: 21px;
+         padding: 0;
+         background-color: vars.$card-background-hover;
+         cursor: pointer;
+         transition: opacity 0.3s ease, visibility 0.3s ease;
+
+         &:hover+.tooltip__text,
+         &:focus+.tooltip__text {
+             opacity: 1;
+             visibility: visible;
+             transform: scale(1);
+         }
+     }
+
+     &__text {
+         position: absolute;
+         top: -30px;
+         right: -64px;
+         width: 370px;
+         background-color: #2e2e2e;
+         padding: 10px;
+         border-radius: 10px;
+         font-size: 13px;
+         font-weight: 500;
+         border: 2px solid #404040;
+         opacity: 0;
+         visibility: hidden;
+         transform-origin: bottom left;
+         transform: scale(0.6);
+         transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+
+         &:hover,
+         &:focus-within {
+             opacity: 1;
+             visibility: visible;
+             transform: scale(1);
+         }
+     }
+ }
