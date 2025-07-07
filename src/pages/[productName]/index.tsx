@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 import {
+  AccordionGameInfo,
   Breadcrumb,
   FAQGrid,
   ProductCart,
@@ -59,11 +60,14 @@ export const ProductPage = () => {
         <ProductCart productName={productName!} payments={data.payments}/>
       </section>
 
+      <AccordionGameInfo title="Описание игры" description={data.description} />
+      
       {data.faq && (
         <Section title="FAQ" id="faq">
           <FAQGrid items={data.faq} />
         </Section>
       )}
+
     </section>
   );
 };
