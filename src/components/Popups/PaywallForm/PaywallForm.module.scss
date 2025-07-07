@@ -305,6 +305,18 @@
         border-radius: 10px 10px 0 0;
         padding: 0 10px;
         max-height: 60vh;
+        transition-duration: 0.4s;
+        opacity: 1;
+        
+        &--visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        &--hidden {
+            transform: translateY(100%);
+            opacity: 1;
+        }
 
         &__close {
             position: sticky;
