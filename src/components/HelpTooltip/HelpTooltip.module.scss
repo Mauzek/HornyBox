@@ -41,6 +41,7 @@
          transform-origin: bottom left;
          transform: scale(0.6);
          transition: transform 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+         z-index: 10;
 
          &:hover,
          &:focus-within {

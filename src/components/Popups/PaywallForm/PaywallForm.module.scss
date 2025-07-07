@@ -65,6 +65,9 @@
         transition: background-color 0.2s ease;
         border: none;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
             background: rgba(0, 0, 0, 0.1);
@@ -256,7 +259,6 @@
         grid-template-rows: min-content;
         gap: 0.75rem;
         transition: all 0.3s;
-        min-height: 344px;
         max-height: 500px;
         overflow-y: auto;
 
@@ -273,7 +275,7 @@
         font-weight: 500;
         background-color: vars.$green-color;
         color: #111;
-        height: 50px;
+        min-height: 50px;
         padding: 5px 20px;
         transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out;
         border: none;
@@ -293,18 +295,47 @@
 }
 
 @media (max-width: 768px) {
+
+    .overlay {
+        padding: 0;
+        align-items: end;
+    }
+
     .popup {
+        border-radius: 10px 10px 0 0;
+        padding: 0 10px;
+        max-height: 60vh;
+
+        &__close {
+            position: sticky;
+            background-color: vars.$green-color;
+            z-index: 100;
+            top: 12.5px;
+            border-radius: 50%;
+            margin: 0;
+            margin-bottom: 5px;
+            box-shadow:
+                0 0 10px rgba(200, 255, 0, 0.4),
+                0 0 40px rgba(200, 255, 0, 0.2),
+                0 4px 15px rgba(0, 0, 0, 0.2);
+
+            svg {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
         &__content {
             flex-direction: column;
             gap: 1rem;
         }
 
-        &__separator {
+        &__title {
             display: none;
         }
 
-        &__payment_grid {
-            grid-template-columns: repeat(2, 1fr);
+        &__separator {
+            display: none;
         }
 
         &__cart {
@@ -320,16 +351,12 @@
             text-align: left;
         }
 
+        &__cart_items {
+            max-height: 270px;
+        }
+
         &__form {
             padding-right: 0;
-        }
-    }
-}
-
-@media (max-width: 460px) {
-    .popup {
-        &__payment_grid {
-            grid-template-columns: 1fr;
         }
     }
 }
