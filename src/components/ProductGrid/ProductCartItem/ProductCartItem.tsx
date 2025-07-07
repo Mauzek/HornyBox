@@ -8,7 +8,6 @@ import { addItemToCart, removeItemFromCart } from "../../../store";
 export const ProductCartItem: React.FC<ProductCartItemProps> = memo(
   ({ productName, product }) => {
     const dispatch = useDispatch();
-    console.log("render cart item: " + product.name);
 
     const handleAddToCart = useCallback(() => {
       dispatch(

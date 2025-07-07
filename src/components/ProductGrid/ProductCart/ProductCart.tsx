@@ -15,12 +15,12 @@ export const ProductCart: React.FC<ProductCartProps> = ({
 }) => {
   const dispatch = useDispatch();
   const { isVisible, toggle, hide } = usePopup();
-  const gameCart = useSelector((state: RootState) => state.cart[productName]);
+  const productCart = useSelector((state: RootState) => state.cart[productName]);
 
   const cartData = useMemo(() => {
-    const price = gameCart ? gameCart.metadata.totalPrice : 0;
-    const quantity = gameCart ? gameCart.metadata.totalQuantity : 0;
-    const items = gameCart ? gameCart.items : [];
+    const price = productCart ? productCart.metadata.totalPrice : 0;
+    const quantity = productCart ? productCart.metadata.totalQuantity : 0;
+    const items = productCart ? productCart.items : [];
     const isEmpty = quantity === 0;
     let productsQuantity = null;
     if (quantity === 1) {
@@ -32,7 +32,7 @@ export const ProductCart: React.FC<ProductCartProps> = ({
     }
 
     return { price, quantity, items, isEmpty, productsQuantity };
-  }, [gameCart]);
+  }, [productCart]);
 
   const prevPriceRef = useRef<number>(cartData.price);
   useEffect(() => {

@@ -50,7 +50,6 @@ export const ProductCard: React.FC<ProductCardProps> = React.memo(
         })
       );
     }, [productName, dispatch, product]);
-    console.log('render card ' + product.name)
 
     return (
       <article className={styles.card}>
