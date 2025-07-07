@@ -13,3 +13,4 @@ export * from './ProductGrid';
 export * from './HelpTooltip';
 export * from './FavouriteHelper';
 export * from './ProductGrid';
+export * from './ScrollToTop';

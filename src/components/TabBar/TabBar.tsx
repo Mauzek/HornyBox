@@ -5,30 +5,55 @@ import { icons } from "../../assets";
 import styles from "./TabBar.module.scss";
 import type { Tab } from "./types";
 import { usePopup } from "../../hooks";
-import { ActionMenu } from "../Popups";
+import { ActionMenu, PaywallForm } from "../Popups";
+import { useSelector } from "react-redux";
+import { useGetProductsQuery, type RootState } from "../../store";
 
 export const TabBar = () => {
   const location = useLocation();
-  const { isVisible, toggle, hide } = usePopup();
+  const {
+    isVisible: isActionMenuVisible,
+    toggle: toggleActionMenu,
+    hide: hideActionMenu,
+  } = usePopup();
+  const {
+    isVisible: isPaywallVisible,
+    toggle: togglePaywall,
+    hide: hidePaywall,
+  } = usePopup();
   const moreButtonRef = useRef<HTMLButtonElement>(null);
   const user: boolean = true;
-  const cart: { count: number } | null = { count: 1 };
 
-  const handleToggle = useCallback(
+  const handleMoreToggle = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
       e.stopPropagation();
-      toggle();
+      toggleActionMenu();
     },
-    [toggle]
+    [toggleActionMenu]
   );
 
-  const parseGameName = (pathname: string): string | null => {
-    const gameMatch = pathname.match(/^\/game\/([^/]+)/);
-    return gameMatch ? gameMatch[1] : null;
+  const handleCartToggle = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      togglePaywall();
+    },
+    [togglePaywall]
+  );
+
+  const parseProductName = (pathname: string): string | null => {
+    const productMatch = pathname.match(/^\/(games|services)\/([^/]+)/);
+    return productMatch ? productMatch[2] : null;
   };
 
-  const gameName: string | null = parseGameName(location.pathname);
+  const productName: string | null = parseProductName(location.pathname);
+
+  const productCart = useSelector((state: RootState) =>
+    productName ? state.cart[productName] : null
+  );
+
+  const { data } = useGetProductsQuery(productName!);
 
   const renderIcon = (
     icon: React.ReactNode | string,
@@ -78,8 +103,8 @@ export const TabBar = () => {
       id: "cart",
       path: "",
       icon: icons.cart,
-      label: `${cart.count} шт`,
-      show: !!gameName && !!cart,
+      label: `${productCart?.metadata.totalQuantity} шт`,
+      show: !!productName && !!productCart,
     },
     {
       id: "more",
@@ -111,30 +136,45 @@ export const TabBar = () => {
                 <button
                   ref={moreButtonRef}
                   className={`${styles.tabbar__button} ${
-                    isVisible ? styles["tabbar__button--active"] : ""
+                    isActionMenuVisible ? styles["tabbar__button--active"] : ""
                   }`}
-                  onClick={handleToggle}
+                  onClick={handleMoreToggle}
+                >
+                  {tabContent}
+                </button>
+              ) : tab.id === "cart" ? (
+                <button
+                  className={`${styles.tabbar__button} ${
+                    isPaywallVisible ? styles["tabbar__button--active"] : ""
+                  }`}
+                  onClick={handleCartToggle}
                 >
                   {tabContent}
                 </button>
               ) : (
-                <button
-                  className={styles.tabbar__button}
-                >
-                  {tabContent}
-                </button>
+                <button className={styles.tabbar__button}>{tabContent}</button>
               )}
             </li>
           );
         })}
       </ul>
       <ActionMenu
-        isOpen={isVisible}
-        onClose={hide}
+        isOpen={isActionMenuVisible}
+        onClose={hideActionMenu}
         toggleButtonRef={moreButtonRef}
-        isGamePage={!!gameName}
+        isGamePage={!!productName}
         user={user}
       />
+      {productName && data?.payments && productCart?.items && (
+        <PaywallForm
+          isOpen={isPaywallVisible}
+          onClose={hidePaywall}
+          payments={data?.payments}
+          cartItems={productCart?.items}
+          productName={productName}
+          totalPrice={productCart?.metadata.totalPrice}
+        />
+      )}
     </nav>
   );
 };
