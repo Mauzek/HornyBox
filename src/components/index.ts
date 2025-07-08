@@ -15,3 +15,4 @@ export * from './FavouriteHelper';
 export * from './ProductGrid';  
 export * from './ScrollToTop';
 export * from './AccordionGameInfo';
+export * from './Preloader';
