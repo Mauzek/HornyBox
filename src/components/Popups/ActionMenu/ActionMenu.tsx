@@ -6,9 +6,10 @@ import {
   LuMessageCircleQuestion,
   LuHistory,
 } from "react-icons/lu";
-import { useClickOutside, useEscapeKey } from "../../../hooks";
+import { useClickOutside, useEscapeKey, usePopup } from "../../../hooks";
 import type { ActionMenuProps } from "./types";
 import styles from "./ActionMenu.module.scss";
+import { OrderHistory } from "../OrderHistory";
 
 export const ActionMenu: React.FC<ActionMenuProps> = ({
   isOpen,
@@ -20,6 +21,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   const popupRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const {isVisible: isVisibleHistory, toggle, hide} = usePopup();
   useClickOutside(popupRef, onClose, isOpen, toggleButtonRef);
   useEscapeKey(onClose, isOpen);
 
@@ -46,8 +48,9 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   const handleHistoryClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    toggle();
     console.log("История clicked");
-    onClose();
+
   };
 
   const handleLinkClick = () => {
@@ -57,6 +60,7 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
   if (!isMounted) return null;
 
   return (
+    <>
     <div
       ref={popupRef}
       className={`${styles.popup} ${
@@ -97,15 +101,17 @@ export const ActionMenu: React.FC<ActionMenuProps> = ({
         </li>
         {user && (
           <li className={styles.popup__item}>
-            <Link to="/history" onClick={handleHistoryClick}>
+            <button onClick={handleHistoryClick}>
               <span className={styles.popup__icon}>
                 <LuHistory />
               </span>
               <span className={styles.popup__text}>История</span>
-            </Link>
+            </button>
           </li>
         )}
       </ul>
     </div>
+          <OrderHistory  isOpen={isVisibleHistory} onClose={hide} />
+    </>
   );
 };
