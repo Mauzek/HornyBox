@@ -6,13 +6,14 @@
     align-items: start;
     margin: 55px 0 10px;
     width: fit-content;
+    max-width:768px;
 
     &__header {
         display: flex;
         gap: 10px;
         align-items: center;
         cursor: pointer;
-
+        outline: none;
         h4 {
             font-size: clamp(1.25rem, 1.14rem + .4695vw, 1.5625rem);
             line-height: 130%;
@@ -34,7 +35,6 @@
 
     &__content {
         display: flex;
-        width: 768px;
         transition: max-height 0.3s ease-in-out;
         overflow: hidden;
 

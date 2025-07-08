@@ -23,7 +23,7 @@ export const AccordionGameInfo: React.FC<AccordionGameInfoProps> = ({title, desc
 
       <div
         className={styles.expandable__content}
-        style={{ maxHeight: isOpen ? "1499px" : "6.2rem" }}
+        style={{ maxHeight: isOpen ? "2000px" : "6.2rem" }}
         aria-hidden={!isOpen}
       >
         <div dangerouslySetInnerHTML={{ __html: description }} />
