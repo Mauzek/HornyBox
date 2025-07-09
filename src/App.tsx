@@ -5,7 +5,7 @@ import {
   HomePage,
   AuthPage,
   ProfilePage,
-  VideoPage,
+  VideosPage,
   ContentPage,
   FAQPage,
   AboutPage,
@@ -27,7 +27,7 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
 
         {/* Дополнительные страницы */}
-        <Route path="/videos" element={<VideoPage />} />
+        <Route path="/videos" element={<VideosPage />} />
         <Route path="/content" element={<ContentPage />} />
         <Route path="/faq" element={<FAQPage />} />
         <Route path="/about" element={<AboutPage />} />

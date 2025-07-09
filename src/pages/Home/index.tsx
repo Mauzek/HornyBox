@@ -75,7 +75,7 @@ export const HomePage = () => {
       </Section>
 
       <Section title="Видео" id="videos">
-        <ContentGrid id="videos" items={data.videos} />
+        <ContentGrid id="videos" items={data.videos.slice(0, 4)}/>
       </Section>
 
       <Section title="Статьи" id="articles">

@@ -1,0 +1,10 @@
+.page {
+
+    &__title {
+        font-size: clamp(2.1875rem, 2.0775rem + .4695vw, 2.5rem);
+        line-height: 130%;
+        font-weight: 500;
+        text-align: left;
+        margin-bottom: 15px;
+    }
+}
