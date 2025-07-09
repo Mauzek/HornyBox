@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "./config";
-import type { Assets } from "../../types";
+import type { Assets, Video } from "../../types";
 
 export const assetsApi = createApi({
     reducerPath: "assetsApi",
@@ -11,8 +11,11 @@ export const assetsApi = createApi({
     endpoints: (builder) => ({
         getAssets: builder.query<Assets, void>({
             query: () => "/assets.json",
+        }),
+        getVideos: builder.query<Video[], void>({
+            query: () => "/assets/videos.json",
         })
     })
 });
 
-export const { useGetAssetsQuery } = assetsApi;
+export const { useGetAssetsQuery, useGetVideosQuery } = assetsApi;
