@@ -9,7 +9,7 @@ const componentMap = {
   articles: ContentArticleCard,
 } as const;
 
-export const ContentGrid = <T extends ComponentMapKey>({
+export const ContentGrid = React.memo(<T extends ComponentMapKey>({
   id,
   items,
   gap = 10,
@@ -26,4 +26,4 @@ export const ContentGrid = <T extends ComponentMapKey>({
       ))}
     </section>
   );
-};
+})
