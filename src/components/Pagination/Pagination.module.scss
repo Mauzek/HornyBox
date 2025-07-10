@@ -1,0 +1,41 @@
+@use '../../styles/variables' as vars;
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+
+    &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: vars.$neutral-color-2;
+        color: vars.$text-color;
+        width: 40px;
+        padding: 0;
+        height: 40px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-radius: 10px;
+
+        &:hover:not(:disabled) {
+            background-color: vars.$neutral-color-dark-4;
+        }
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        &--active {
+            box-shadow: 0 0 0 1px vars.$green-color;
+        }
+
+        svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+}
