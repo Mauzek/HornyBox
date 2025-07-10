@@ -4,6 +4,7 @@ export interface PaywallFormProps {
   onClose: () => void;
   cartItems: CartItem[];
   totalPrice: number;
+  totalQuantity: number;
   payments: Payments;
   productName: string;
   isOpen: boolean;

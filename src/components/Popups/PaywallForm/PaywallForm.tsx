@@ -16,6 +16,7 @@ export const PaywallForm: React.FC<PaywallFormProps> = ({
   isOpen,
   cartItems,
   totalPrice,
+  totalQuantity,
 }) => {
   const [selectedPayment, setSelectedPayment] = useState<number>(1);
   const [uid, setUid] = useState<string>("");
@@ -177,7 +178,12 @@ export const PaywallForm: React.FC<PaywallFormProps> = ({
                 </span>
               </h4>
               <p className={styles.popup__cart_count}>
-                {cartItems.length} товар{cartItems.length > 1 ? "а" : ""}
+                {totalQuantity} товар
+                {totalQuantity > 1 && totalQuantity < 5
+                  ? "а"
+                  : totalQuantity > 4
+                  ? "ов"
+                  : ""}
               </p>
             </div>
 

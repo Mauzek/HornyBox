@@ -104,6 +104,7 @@ export const ProductCart: React.FC<ProductCartProps> = ({
       <PaywallForm
         payments={payments}
         totalPrice={cartData.price}
+        totalQuantity={cartData.quantity}
         cartItems={cartData.items}
         productName={productName}
         isOpen={isVisible}
