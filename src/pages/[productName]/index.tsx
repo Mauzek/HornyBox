@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import {
   AccordionGameInfo,
   Breadcrumb,
@@ -11,6 +11,7 @@ import {
   Section,
 } from "../../components";
 import { useGetProductsQuery } from "../../store";
+import { usePreloader } from "../../hooks/usePreloader";
 
 export const ProductPage = () => {
   const params = useParams();
@@ -18,7 +19,9 @@ export const ProductPage = () => {
   const { data, isLoading } = useGetProductsQuery(productName!, {
     skip: !productName,
   });
-  const [showPreloader, setShowPreloader] = useState(true);
+  const { shouldShowPreloader, handlePreloaderComplete } = usePreloader({
+    isLoading,
+  });
 
   const categoryData = useMemo(() => {
     if (!data?.category || !category) return null;
@@ -44,28 +47,16 @@ export const ProductPage = () => {
     document.title = title;
   }, [data?.name, category, categoryData]);
 
-  const handlePreloaderComplete = () => {
-    setShowPreloader(false);
-  };
-
-  const shouldShowPreloader = isLoading || showPreloader;
-
   if (!data) {
     return (
-      <Preloader 
-        isLoading={isLoading}
-        onComplete={handlePreloaderComplete}
-      />
+      <Preloader isLoading={isLoading} onComplete={handlePreloaderComplete} />
     );
   }
 
   return (
     <>
       {shouldShowPreloader && (
-        <Preloader 
-          isLoading={isLoading}
-          onComplete={handlePreloaderComplete}
-        />
+        <Preloader isLoading={isLoading} onComplete={handlePreloaderComplete} />
       )}
 
       <section>
@@ -77,12 +68,18 @@ export const ProductPage = () => {
           types={data.type || []}
         />
         <section style={{ display: "flex", gap: "25px" }}>
-          <ProductGrid products={productsData || []} productName={productName!} />
-          <ProductCart productName={productName!} payments={data.payments}/>
+          <ProductGrid
+            products={productsData || []}
+            productName={productName!}
+          />
+          <ProductCart productName={productName!} payments={data.payments} />
         </section>
 
-        <AccordionGameInfo title="Описание игры" description={data.description} />
-        
+        <AccordionGameInfo
+          title="Описание игры"
+          description={data.description}
+        />
+
         {data.faq && (
           <Section title="FAQ" id="faq">
             <FAQGrid items={data.faq} />

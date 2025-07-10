@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Carousel, ContentGrid, FAQGrid, Section } from "../../components";
 import { ItemGrid } from "../../components/ItemGrid";
 import { useGetAssetsQuery } from "../../store";
@@ -32,9 +33,12 @@ const faqData = [
 ];
 
 export const HomePage = () => {
-  document.title = "HornyBox - магазин выгодных донатов и попоплнений";
-  const { data, error} = useGetAssetsQuery();
+  const { data, error } = useGetAssetsQuery();
   
+  useEffect(() => {
+    document.title = "HornyBox - магазин выгодных донатов и попоплнений";
+  }, []);
+
   if (error || data === undefined) return <p>Error</p>;
   const carouselSlides = data.banners.reduce(
     (acc, item) => {
@@ -60,7 +64,11 @@ export const HomePage = () => {
         <ItemGrid items={data.popular} itemSize="medium" id="popular" />
       </Section>
 
-      <Carousel slides={carouselSlides.articles} type="article" interval={5000} />
+      <Carousel
+        slides={carouselSlides.articles}
+        type="article"
+        interval={5000}
+      />
 
       <Section title="Сервисы" id="services">
         <ItemGrid items={data.services} split={true} itemSize="small" />
@@ -75,15 +83,15 @@ export const HomePage = () => {
       </Section>
 
       <Section title="Видео" id="videos">
-        <ContentGrid id="videos" items={data.videos.slice(0, 4)}/>
+        <ContentGrid id="videos" items={data.videos.slice(0, 4)} />
       </Section>
 
       <Section title="Статьи" id="articles">
-         <ContentGrid id="articles" items={data.articles}  gap={20}/>
+        <ContentGrid id="articles" items={data.articles.slice(0, 4)} gap={20} />
       </Section>
 
       <Section title="FAQ" id="faq">
-          <FAQGrid items={faqData}/>
+        <FAQGrid items={faqData} />
       </Section>
     </section>
   );

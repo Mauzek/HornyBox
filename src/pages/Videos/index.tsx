@@ -1,7 +1,8 @@
 import styles from "./Videos.module.scss";
 import { ContentGrid, FAQGrid, Preloader, Section } from "../../components";
 import { useGetVideosQuery } from "../../store";
-import { useCallback, useState } from "react";
+import { useEffect } from "react";
+import { usePreloader } from "../../hooks/usePreloader";
 
 const faqData = [
   {
@@ -15,17 +16,17 @@ const faqData = [
     question: "Зачем нужна эта страница?",
     answer:
       "<p>Для твоего же удобства. Смотреть видео твоих любимых блогеров, не покидая сайт HornyBox!</p>",
-  }
+  },
 ];
 
 export const VideosPage = () => {
-  document.title = "Видео от наших любимых блогеров на HornyBox";
-  const [showPreloader, setShowPreloader] = useState(true);
   const { data, isLoading } = useGetVideosQuery();
+  const { shouldShowPreloader, handlePreloaderComplete } = usePreloader({
+    isLoading,
+  });
 
-  const shouldShowPreloader = isLoading || showPreloader;
-  const handlePreloaderComplete = useCallback(() => {
-    setShowPreloader(false);
+  useEffect(() => {
+    document.title = "Видео от наших любимых блогеров на HornyBox";
   }, []);
 
   if (!data) {
@@ -33,6 +34,7 @@ export const VideosPage = () => {
       <Preloader isLoading={isLoading} onComplete={handlePreloaderComplete} />
     );
   }
+
   return (
     <>
       {shouldShowPreloader && (
@@ -44,7 +46,7 @@ export const VideosPage = () => {
         <ContentGrid id="videos" items={data} gap={15} />
 
         <Section title="FAQ" id="faq">
-          <FAQGrid items={faqData}/>
+          <FAQGrid items={faqData} />
         </Section>
       </section>
     </>
