@@ -14,7 +14,8 @@
     border: 2px solid vars.$neutral-color-dark-2;
     border-radius: 10px;
     padding: 15px;
-    animation: borderFlash 1s ease-in-out;
+    animation: borderFlash 1s ease-in-out ;
+    animation-delay: 2s;
 
     &__header {
         display: flex;

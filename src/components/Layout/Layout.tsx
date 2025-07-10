@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { Header, TabBar, Footer, ScrollToTop, Preloader } from "../";
 import { useGetAssetsQuery } from "../../store";
 import styles from "./Layout.module.scss";
+import { usePreloader } from "../../hooks/usePreloader";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { data, isLoading, isError } = useGetAssetsQuery();
-  const [showPreloader, setShowPreloader] = useState(true);
-
-  const handlePreloaderComplete = () => {
-    setShowPreloader(false);
-  };
-
-  const shouldShowPreloader = isLoading || showPreloader;
+  const {shouldShowPreloader, handlePreloaderComplete} = usePreloader({
+    isLoading,
+  });
 
   if (!data || isError) {
     return (
