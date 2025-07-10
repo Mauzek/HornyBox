@@ -6,11 +6,20 @@ interface UseCarouselOptions {
   autoPlayInterval?: number;
 }
 
+interface UseCarouselReturn {
+  index: number;
+  isTransitioning: boolean;
+  setIndex: (target: number) => void;
+  goToSlide: (target: number) => void;
+  nextSlide: () => void;
+  prevSlide: () => void;
+}
+
 export const useCarousel = ({
   slidesCount,
   autoPlay = true,
   autoPlayInterval = 5000,
-}: UseCarouselOptions) => {
+}: UseCarouselOptions): UseCarouselReturn => {
   const [index, setIndex] = useState(1);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
