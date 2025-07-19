@@ -1,0 +1,11 @@
+.page{
+    display: flex;
+    flex-direction: column;
+    &__title {
+        font-weight: 500;
+        margin-bottom: 15px;
+        line-height: 1.3;
+        text-align: start;
+        font-size: clamp(2.1875rem, 2.0775rem + .4695vw, 2.5rem);
+    }
+}
