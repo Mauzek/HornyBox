@@ -13,13 +13,11 @@ export const useClickOutside = (
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
       
-      // Проверяем кнопку с data-popup-toggle (для Header)
       const toggleButton = document.querySelector('[data-popup-toggle]');
       if (toggleButton && toggleButton.contains(target)) {
         return;
       }
 
-      // Проверяем переданный toggleButtonRef (для TabBar)
       if (toggleButtonRef?.current && 
           (toggleButtonRef.current === target || 
            toggleButtonRef.current.contains(target))) {

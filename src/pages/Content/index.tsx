@@ -1,16 +1,18 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useGetArticlesQuery } from "../../store";
 import styles from "./Content.module.scss";
 import { LuCheck } from "react-icons/lu";
 import { ContentGrid, Pagination, Preloader } from "../../components";
 import type { Article } from "../../types";
-import { usePagination } from "../../hooks";
+import { usePagination, usePopup } from "../../hooks";
 import { usePreloader } from "../../hooks/usePreloader";
+import { FiltersMenu } from "../../components/Popups";
 
 export const ContentPage = () => {
   const [selectedCategories, setSelectedCategories] = useState<Set<string>>(
     new Set()
   );
+  const { isVisible, hide, toggle } = usePopup();
   const { data, isLoading } = useGetArticlesQuery();
 
   const { shouldShowPreloader, handlePreloaderComplete } = usePreloader({
@@ -43,18 +45,21 @@ export const ContentPage = () => {
     itemsPerPage: 16,
   });
 
-  const handleCategoryToggle = (category: string) => {
-    setSelectedCategories((prev) => {
-      if (prev.has(category)) {
-        const newSet = new Set(prev);
-        newSet.delete(category);
-        return newSet;
-      } else {
-        return new Set([...prev, category]);
-      }
-    });
-    goToPage(1);
-  };
+  const handleCategoryToggle = useCallback(
+    (category: string) => {
+      setSelectedCategories((prev) => {
+        if (prev.has(category)) {
+          const newSet = new Set(prev);
+          newSet.delete(category);
+          return newSet;
+        } else {
+          return new Set([...prev, category]);
+        }
+      });
+      goToPage(1);
+    },
+    [goToPage]
+  );
 
   useEffect(() => {
     document.title = "Гайды, статьи, игровые новости на HornyBox";
@@ -97,6 +102,10 @@ export const ContentPage = () => {
           </div>
         </div>
 
+        <button className={styles.page__button} onClick={toggle}>
+          Фильтры
+        </button>
+
         <div className={styles.page__info}>
           <p>
             Показано {currentPageData.length} из {filteredData.length} статей
@@ -133,6 +142,15 @@ export const ContentPage = () => {
             totalPages={totalPages}
           />
         )}
+
+        <FiltersMenu
+          filters={categories}
+          onClose={hide}
+          isOpen={isVisible}
+          onFilterToggle={handleCategoryToggle}
+          selectedFilters={selectedCategories}
+          title="Фильтры"
+        />
       </section>
     </>
   );

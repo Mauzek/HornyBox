@@ -21,11 +21,29 @@
         font-weight: 500;
     }
 
+    &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        color: vars.$text-color;
+        height: 50px;
+        background-color: vars.$neutral-color-2;
+
+        @media screen and (min-width: 769px) {
+            display: none;
+        }
+    }
+
     &__nav {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 15px;
+
+        @media (max-width: 768px) {
+            display: none;
+        }
     }
 
     &__filter {
@@ -113,5 +131,5 @@
             background-color: vars.$green-color;
             color: #000;
         }
-    }   
+    }
 }
