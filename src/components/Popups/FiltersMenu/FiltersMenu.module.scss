@@ -1,0 +1,194 @@
+@use "../../../styles/variables" as vars;
+
+.overlay {
+    display: none;
+
+    @media screen and (max-width: 768px) {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        pointer-events: none;
+
+        &--visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        &--hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+}
+
+.popup {
+    position: relative;
+
+    &__close {
+        display: none;
+
+        @media screen and (max-width: 768px) {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            background-color: vars.$green-color;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            z-index: 101;
+            padding: 0;
+            margin: 0;
+            box-shadow: 0 0 10px rgba(200, 255, 0, 0.4), 0 0 40px rgba(200, 255, 0, 0.2),
+                0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s ease;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+
+            svg {
+                width: 18px;
+                height: 18px;
+                color: #000;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: vars.$page-background-color;
+        border-radius: 20px 20px 0 0;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        min-height: 280px;
+        max-height: 85vh;
+        z-index: 1000;
+        transform: translateY(100%);
+        transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s ease;
+        opacity: 0;
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+
+        &--visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        &--hidden {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 38px;
+            height: 6px;
+            background-image: url("data:image/svg+xml,%3Csvg width='38' height='6' viewBox='0 0 38 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 1C0 0.447715 0.447715 0 1 0H37C37.5523 0 38 0.447715 38 1C38 1.55228 37.5523 2 37 2H1C0.447716 2 0 1.55228 0 1Z' fill='%23404040'%3E%3C/path%3E%3Cpath d='M9.5 5C9.5 4.44772 9.94772 4 10.5 4H27.5C28.0523 4 28.5 4.44772 28.5 5C28.5 5.55228 28.0523 6 27.5 6H10.5C9.94771 6 9.5 5.55228 9.5 5Z' fill='%23404040'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+        }
+
+        &__title {
+
+            padding: 24px 0 16px;
+            text-align: left;
+            font-size: clamp(1.25rem, 1.14rem + .4695vw, 1.5625rem);
+            font-weight: 600;
+            color: vars.$text-color;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            min-height: 200px;
+            padding: 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            max-height: calc(85vh - 80px);
+        }
+
+        &__nav {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        &__filter {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+        }
+
+        &__filterCheckbox {
+            position: relative;
+            width: 20px;
+            height: 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: vars.$button-secondary-background;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+
+            &[data-state="checked"] {
+                background-color: vars.$green-color;
+
+                .popup__checkboxIcon {
+                    opacity: 1;
+                }
+            }
+
+            &[data-state="unchecked"] {
+                .popup__checkboxIcon {
+                    opacity: 0;
+                }
+            }
+        }
+
+        &__checkboxIcon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        &__checkIcon {
+            color: #000;
+            stroke-width: 2.5;
+        }
+    }
+}
