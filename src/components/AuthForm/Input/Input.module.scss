@@ -1,0 +1,48 @@
+@use '../../../styles/variables' as vars;
+
+.inputContainer{
+
+    &__wrapper{
+        display: flex;
+        padding: 10px 15px;
+        height: 55px;
+        border-radius: 10px;
+        background-color: vars.$card-background-2;
+        transition: outline 0.2s ease-in-out;
+        outline: 2px solid transparent;
+
+        &--error{
+
+        }   
+        
+        &--focus{
+            outline: 2px solid vars.$green-color;
+        }
+    }
+
+    &__input{
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        color: vars.$text-color;
+
+        &:focus{
+            outline: none;
+        }
+    }
+
+    &__button {
+
+    }
+
+    &__icon{
+
+    }
+
+    &__error{
+
+        &--visible {
+
+        }
+    }
+}

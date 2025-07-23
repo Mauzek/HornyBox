@@ -10,7 +10,7 @@ import { usePopup, useScrollDirection } from "../../hooks";
 
 const Header = memo(() => {
   //   const user = useSelector((state: RootState) => state.user.user);
-  const user = true;
+  const user = false;
   const { isVisible, toggle, hide } = usePopup();
   const { headerRef } = useScrollDirection(50);
   const handleToggle = (e: React.MouseEvent) => {

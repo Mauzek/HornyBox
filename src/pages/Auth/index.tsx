@@ -1,8 +1,11 @@
-import React from 'react'
+import { AuthForm } from '../../components'
+import styles from './Auth.module.scss';
 
 export const AuthPage = () => {
     document.title = "Вход - HornyBox"
   return (
-    <div>AuthPage</div>
+    <section className={styles.page}>
+      <AuthForm/>
+    </section>
   )
 }

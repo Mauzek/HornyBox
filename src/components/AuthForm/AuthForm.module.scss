@@ -1,0 +1,30 @@
+@use '../../styles/variables' as vars;
+
+.authForm {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    max-width: 619px;
+    width: 100%;
+    padding: 20px;
+    background-color: vars.$page-background-color;
+    border: 2px solid vars.$neutral-color-2;
+    border-radius: 10px;
+
+
+    &__header{
+        display: flex;
+    }
+
+    &__title{
+        font-size: clamp(1.5625rem, 1.4525rem + .4695vw, 1.875rem);
+        font-weight: 500;
+            line-height: 130%;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+}

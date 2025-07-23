@@ -17,3 +17,4 @@ export * from './ScrollToTop';
 export * from './AccordionGameInfo';
 export * from './Preloader';
 export * from './Pagination';
+export * from './AuthForm';
