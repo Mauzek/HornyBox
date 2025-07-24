@@ -1,3 +1,3 @@
-export * from './loadFromLocalStorage';
-export * from './formatDate';
-export * from './formatPrice';
+export * from "./loadFromLocalStorage";
+export * from "./formatDate";
+export * from "./formatPrice";
