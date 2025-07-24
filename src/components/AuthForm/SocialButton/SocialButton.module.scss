@@ -1,0 +1,22 @@
+@use '../../../styles/variables' as vars;
+
+.socialButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background-color: vars.$button-background-neutral;
+    color: vars.$text-color;
+    height: 40px;
+    transition: background-color 0.2s ease-in-out;
+
+    &:hover{
+        background-color: vars.$neutral-color-dark-4;
+    }
+
+    svg{
+        width: 24px;
+        height: 24px;
+    }
+}

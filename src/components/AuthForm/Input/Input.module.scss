@@ -1,48 +1,86 @@
 @use '../../../styles/variables' as vars;
 
-.inputContainer{
+.inputContainer {
+    //  max-height: 55px;
+    //  overflow: hidden;
+    transition: all 0.2s ease-in-out;
 
-    &__wrapper{
+
+    &__wrapper {
         display: flex;
         padding: 10px 15px;
+        max-height: 55px;
         height: 55px;
         border-radius: 10px;
         background-color: vars.$card-background-2;
-        transition: outline 0.2s ease-in-out;
-        outline: 2px solid transparent;
+        transition: border 0.2s ease-in-out;
+        border: 2px solid transparent;
 
-        &--error{
+        &:focus-within {
+            border: 2px solid vars.$green-color;
 
-        }   
-        
-        &--focus{
-            outline: 2px solid vars.$green-color;
+            .inputContainer__button {
+                opacity: 1;
+            }
         }
+
+        &--error {
+            border: 2px solid vars.$text-error !important;
+        }
+
     }
 
-    &__input{
+    &__input {
         width: 100%;
         background-color: transparent;
         border: none;
         color: vars.$text-color;
+        padding: 0;
 
-        &:focus{
+        &:focus {
             outline: none;
+        }
+
+        &::placeholder {
+            font-weight: 500;
+            font-family: vars.$body-text;
+            font-size: 14px;
+            color: vars.$text-neutral
         }
     }
 
     &__button {
-
+        opacity: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: vars.$green-color-opacity;
+        background-color: transparent;
+        padding: 0;
+        transition: all 0.2s ease-in-out;
     }
 
-    &__icon{
-
+    &__icon {
+        width: 24px;
+        height: 24px;
     }
 
-    &__error{
+    &__error {
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        color: vars.$text-error;
+        text-align: left;
+        font-weight: 500;
+        line-height: 130%;
+        transition: all 0.2s ease-in-out;
 
         &--visible {
-
+            max-height: 50px;
+            visibility: visible;
+            opacity: 1;
+            padding-top: 5px;
         }
     }
 }

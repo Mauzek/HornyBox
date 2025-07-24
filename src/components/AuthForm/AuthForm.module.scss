@@ -10,21 +10,93 @@
     background-color: vars.$page-background-color;
     border: 2px solid vars.$neutral-color-2;
     border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 41px;
 
-
-    &__header{
-        display: flex;
+    @media screen and (max-width: 768px) {
+        padding: 20px 15px;
     }
 
-    &__title{
+    &__header {
+        display: flex;
+        align-items: center;
+    }
+
+    &__back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        color: vars.$green-color;
+        padding: 0;
+        margin-right: 10px;
+        border: none;
+        cursor: pointer;
+        width: auto;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &__icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    &__title {
         font-size: clamp(1.5625rem, 1.4525rem + .4695vw, 1.875rem);
         font-weight: 500;
-            line-height: 130%;
+        line-height: 130%;
+        margin: 0;
     }
 
     &__form {
         display: flex;
         flex-direction: column;
         gap: 20px;
+    }
+
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+
+        @media screen and (max-width: 768px) {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+        }
+    }
+
+    &__action {
+        background-color: transparent;
+        color: vars.$green-color;
+        padding: 0;
+        font-weight: 400;
+        line-height: 1.5;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            color: vars.$green-color-opacity;
+        }
+    }
+
+    &__button {
+        height: 40px;
+        border: none;
+        cursor: pointer;
+
+        &:disabled {
+            background-color: vars.$button-disabled-background;
+            color: vars.$button-disabled-text;
+            cursor: not-allowed;
+        }
+    }
+
+    &__social {
+        display: flex;
+        flex-direction: column;
+        gap: 20px
     }
 }
