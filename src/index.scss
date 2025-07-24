@@ -41,7 +41,7 @@ a {
   color: vars.$green-color;
   text-decoration: inherit;
 
-  &:focus-visible{
+  &:focus-visible {
     outline: vars.$green-color 2px solid;
   }
 }
@@ -81,8 +81,22 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 
-  &:focus-visible{
+  &:focus-visible {
     outline: vars.$green-color 2px solid;
+  }
+}
+
+input {
+  caret-color: vars.$green-color;
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus,
+  &:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px vars.$card-background-2 inset !important;
+    -webkit-text-fill-color: vars.$text-color !important;
+    background-color: vars.$card-background-2 !important;
+    color: vars.$text-color !important;
+    border-radius: 0 !important;
   }
 }
 
