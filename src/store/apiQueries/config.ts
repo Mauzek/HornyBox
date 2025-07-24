@@ -1,1 +1,3 @@
-export const BASE_URL = 'https://hornybox-17db3-default-rtdb.europe-west1.firebasedatabase.app';
+import { env } from "../../config/env";
+
+export const BASE_URL = env.firebaseDatabaseUrl;
