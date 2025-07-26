@@ -15,7 +15,7 @@ export const AuthForm = () => {
   const [formState, setFormState] = useState<"login" | "register" | "forgot">(
     "login"
   );
-  
+
   const {
     error,
     loading,
@@ -23,8 +23,9 @@ export const AuthForm = () => {
     signInWithGithub,
     signInWithEmail,
     signUpWithEmail,
+    resetPassword,
   } = useFirebase();
-  
+
   const navigate = useNavigate();
 
   const isActive = (() => {
@@ -85,10 +86,10 @@ export const AuthForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       let result = null;
-      
+
       switch (formState) {
         case "login": {
           result = await signInWithEmail(email, password);
@@ -97,7 +98,7 @@ export const AuthForm = () => {
           }
           break;
         }
-        
+
         case "register": {
           result = await signUpWithEmail(email, password);
           if (result) {
@@ -105,9 +106,10 @@ export const AuthForm = () => {
           }
           break;
         }
-        
+
         case "forgot": {
-          alert("Функция восстановления пароля будет реализована позже");
+          result = await resetPassword(email);
+          handleBackClick();
           break;
         }
       }
@@ -187,13 +189,13 @@ export const AuthForm = () => {
         )}
         <h1 className={styles.authForm__title}>{getTitle()}</h1>
       </div>
-      
+
       {error && (
         <div className={styles.authForm__error}>
           {error.message || "Произошла ошибка авторизации"}
         </div>
       )}
-      
+
       <form className={styles.authForm__form} onSubmit={handleSubmit}>
         {renderInputs()}
 
@@ -245,7 +247,7 @@ export const AuthForm = () => {
             disabled={!isActive || loading}
             type="submit"
           >
-            {loading ? "Загрузка..." : (formState === "register" ? "Зарегистрироваться" : "Отправить")}
+            Продолжить
           </button>
         )}
       </form>
