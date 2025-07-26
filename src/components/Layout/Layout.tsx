@@ -3,12 +3,14 @@ import { Header, TabBar, Footer, ScrollToTop, Preloader } from "../";
 import { useGetAssetsQuery } from "../../store";
 import styles from "./Layout.module.scss";
 import { usePreloader } from "../../hooks/usePreloader";
+import { useFirebase } from "../../hooks";
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { data, isLoading, isError } = useGetAssetsQuery();
   const {shouldShowPreloader, handlePreloaderComplete} = usePreloader({
     isLoading,
   });
+  useFirebase();
 
   if (!data || isError) {
     return (
