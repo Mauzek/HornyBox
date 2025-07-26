@@ -2,15 +2,14 @@ import { LuUserRound } from "react-icons/lu";
 import { Link } from "react-router-dom";
 import { images } from "../../assets";
 import { memo } from "react";
-// import { useSelector } from "react-redux";
-// import type { RootState } from "../../store";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store";
 import { OrderHistory } from "../Popups";
 import styles from "./Header.module.scss";
 import { usePopup, useScrollDirection } from "../../hooks";
 
 const Header = memo(() => {
-  //   const user = useSelector((state: RootState) => state.user.user);
-  const user = false;
+  const user = useSelector((state: RootState) => state.user.user);
   const { isVisible, toggle, hide } = usePopup();
   const { headerRef } = useScrollDirection(50);
   const handleToggle = (e: React.MouseEvent) => {
@@ -58,7 +57,7 @@ const Header = memo(() => {
               </div>
               <Link to="/profile" className={styles.header__profile}>
                 <img
-                  src="https://lh3.googleusercontent.com/a/ACg8ocL2JNj8N5vHEvpI_OGMNidNFRVo1ZFOBDZNb4aAHxmvXCn-tTGB=s96-c"
+                  src={user.photoURL || images.defaultAvatar}
                   alt="User avatar"
                   className={styles.header__avatar}
                 />
