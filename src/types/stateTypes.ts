@@ -1,15 +1,16 @@
 export interface User {
-  id: number;
-  username: string;
-  email: string;
-  image: string;
-  referal: number | null;
+  uid: string;
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
+  emailVerified: boolean;
+  isAnonymous: boolean;
 }
 
-export interface UserData {
-  user: User;
-  accessToken: string;
-  refreshToken: string;
+export interface UserState {
+  user: User | null;
+  isAuthenticated: boolean;
+  loading: boolean;
 }
 
 export interface Cart {
