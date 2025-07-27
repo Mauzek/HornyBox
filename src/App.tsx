@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Layout } from "./components";
 import {
@@ -14,8 +14,11 @@ import {
   NotFoundPage,
   SteamPage,
 } from "./pages";
+import { useSelector } from "react-redux";
+import type { RootState } from "./store";
 
 function App() {
+  const {isAuthenticated} = useSelector((state: RootState) => state.user);
   return (
     <Layout>
       <Routes>
@@ -23,8 +26,16 @@ function App() {
         <Route path="/" element={<HomePage />} />
 
         {/* Страницы авторизации и профиля */}
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/auth" element={
+            isAuthenticated ? 
+              <Navigate to="/profile" replace /> : 
+              <AuthPage />
+          }  />
+        <Route path="/profile" element={
+            !isAuthenticated ? 
+              <Navigate to="/auth" replace /> : 
+              <ProfilePage />
+          }  />
 
         {/* Дополнительные страницы */}
         <Route path="/videos" element={<VideosPage />} />

@@ -18,3 +18,4 @@ export * from './AccordionGameInfo';
 export * from './Preloader';
 export * from './Pagination';
 export * from './AuthForm';
+export * from './Toast';
