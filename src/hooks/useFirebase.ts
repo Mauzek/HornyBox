@@ -8,6 +8,9 @@ import {
   type AuthError,
   sendPasswordResetEmail,
   updateProfile,
+  linkWithPopup,
+  GithubAuthProvider,
+  GoogleAuthProvider,
 } from "firebase/auth";
 import { auth, googleProvider, githubProvider } from "../config/firebase";
 import { useState, useEffect, useRef } from "react";
@@ -31,6 +34,8 @@ interface UseFirebaseReturn {
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<void>;
   updateDisplayName: (displayName: string) => Promise<void>;
+  linkWithGithub: () => Promise<User>;
+  linkWithGoogle: () => Promise<User>;
 
   clearError: () => void;
 }
@@ -51,6 +56,8 @@ export const useFirebase = (): UseFirebaseReturn => {
       photoURL: user.photoURL,
       emailVerified: user.emailVerified,
       isAnonymous: user.isAnonymous,
+      provider: user.providerData,
+      createAt: user.metadata.creationTime,
     };
   };
 
@@ -251,6 +258,86 @@ export const useFirebase = (): UseFirebaseReturn => {
     }
   };
 
+  const linkWithGithub = async (): Promise<User> => {
+    if (!auth.currentUser) {
+      throw new Error("No user is currently signed in");
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const githubProvider = new GithubAuthProvider();
+      const result = await linkWithPopup(auth.currentUser, githubProvider);
+      dispatch(setUser(convertUser(result.user)));
+      console.log("GitHub успешно привязан к аккаунту:", result.user);
+      return result.user;
+    } catch (error: unknown) {
+      console.error("Ошибка при привязке GitHub:", error);
+      if (isAuthError(error)) {
+        if (error.code === "auth/credential-already-in-use") {
+          setError(
+            new Error(
+              "Этот GitHub аккаунт уже используется другим пользователем"
+            ) as AuthError
+          );
+        } else if (error.code === "auth/popup-blocked") {
+          setError(
+            new Error(
+              "Всплывающее окно заблокировано. Разрешите всплывающие окна и попробуйте снова."
+            ) as AuthError
+          );
+        } else {
+          handleError(error);
+        }
+      } else {
+        handleError(new Error("Неизвестная ошибка при привязке GitHub"));
+      }
+
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const linkWithGoogle = async (): Promise<User> => {
+    if (!auth.currentUser) {
+      throw new Error("No user is currently signed in");
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const googleProvider = new GoogleAuthProvider();
+      const result = await linkWithPopup(auth.currentUser, googleProvider);
+      dispatch(setUser(convertUser(result.user)));
+      console.log("Google успешно привязан к аккаунту:", result.user);
+      return result.user;
+    } catch (error: unknown) {
+      console.error("Ошибка при привязке Google:", error);
+
+      if (isAuthError(error)) {
+        handleError(error);
+      } else {
+        handleError(new Error("Неизвестная ошибка при привязке Google"));
+      }
+
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const isAuthError = (error: unknown): error is AuthError => {
+    return (
+      typeof error === "object" &&
+      error !== null &&
+      "code" in error &&
+      typeof (error as { code: unknown }).code === "string"
+    );
+  };
+
   return {
     loading,
     error,
@@ -262,6 +349,8 @@ export const useFirebase = (): UseFirebaseReturn => {
     signOut: signOutAuth,
     resetPassword,
     updateDisplayName,
+    linkWithGithub,
+    linkWithGoogle,
 
     clearError,
   };
