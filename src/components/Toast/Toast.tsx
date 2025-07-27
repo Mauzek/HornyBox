@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FiCheck, FiX, FiInfo, FiAlertTriangle } from "react-icons/fi";
+import { LuX, LuCheck, LuTriangleAlert, LuInfo   } from "react-icons/lu";
 import type { ToastProps } from "./types";
 import styles from "./Toast.module.scss";
 
@@ -24,15 +24,15 @@ export const Toast = ({
   const getIcon = () => {
     switch (type) {
       case "success":
-        return <FiCheck size={20} />;
+        return <LuCheck/>;
       case "error":
-        return <FiX size={20} />;
+        return <LuX />;
       case "warning":
-        return <FiAlertTriangle size={20} />;
+        return <LuTriangleAlert />;
       case "info":
-        return <FiInfo size={20} />;
+        return <LuInfo/>;
       default:
-        return <FiInfo size={20} />;
+        return <LuInfo/>;
     }
   };
 
