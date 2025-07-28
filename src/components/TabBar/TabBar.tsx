@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { LuCircleUser } from "react-icons/lu";
-import { icons } from "../../assets";
+import { icons, images } from "../../assets";
 import styles from "./TabBar.module.scss";
 import type { Tab } from "./types";
 import { usePopup } from "../../hooks";
@@ -22,7 +22,7 @@ export const TabBar = () => {
     hide: hidePaywall,
   } = usePopup();
   const moreButtonRef = useRef<HTMLButtonElement>(null);
-  const user: boolean = true;
+  const { user } = useSelector((state: RootState) => state.user);
 
   const handleMoreToggle = useCallback(
     (e: React.MouseEvent) => {
@@ -91,7 +91,7 @@ export const TabBar = () => {
       icon: user ? (
         <img
           className={styles.tabbar__avatar}
-          src="https://lh3.googleusercontent.com/a/ACg8ocL2JNj8N5vHEvpI_OGMNidNFRVo1ZFOBDZNb4aAHxmvXCn-tTGB=s96-c"
+          src={user.photoURL || images.defaultAvatar}
           alt="Avatar"
         />
       ) : (
@@ -173,6 +173,7 @@ export const TabBar = () => {
           cartItems={productCart?.items}
           productName={productName}
           totalPrice={productCart?.metadata.totalPrice}
+          totalQuantity={productCart.metadata.totalQuantity}
         />
       )}
     </nav>
