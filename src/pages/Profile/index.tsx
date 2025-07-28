@@ -58,6 +58,8 @@ export const ProfilePage = () => {
       setIsEditing(true);
       setShowLine(true);
       setInputValue(getDisplayName());
+      const input = document.getElementById("displayName");
+      input?.focus();
     } else {
       handleSaveDisplayName();
     }
@@ -140,6 +142,7 @@ export const ProfilePage = () => {
             </div>
             <div className={styles.profile__name}>
               <input
+                id="displayName"
                 name="displayName"
                 type="text"
                 inputMode="text"
@@ -150,12 +153,12 @@ export const ProfilePage = () => {
                 onChange={handleInputChange}
                 onKeyDown={isEditing ? handleKeyPress : undefined}
               />
-            </div>
-            {showLine && (
               <div
-                className={`${styles.profile__editLine} ${styles["profile__editLine--active"]}`}
-              ></div>
-            )}
+                className={`${styles.profile__editLine} ${
+                  showLine ? styles["profile__editLine--active"] : ""
+                }`}
+              />
+            </div>
             <button
               className={`${styles.profile__action} ${styles.profile__edit}`}
               onClick={handleEditClick}

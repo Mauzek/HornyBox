@@ -1,0 +1,243 @@
+@use '../../styles/variables' as vars;
+
+.profile {
+    display: flex;
+    gap: 10px;
+
+    @media screen and (max-width: 768px) {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    &__section {
+        display: flex;
+        border-radius: 10px;
+
+        &--left {
+            flex-direction: column;
+            gap: 10px;
+
+        }
+
+        &--right {
+            display: flex;
+            background-color: vars.$neutral-color-2;
+            background-position: 100% 100%;
+            background-repeat: no-repeat;
+            width: 100%;
+            padding: 15px;
+
+            @media screen and (min-width: 1200px) {
+                display: grid;
+                gap: 50px;
+                background-image: url('src/assets/images/account-provider-bg.svg');
+            }
+
+        }
+    }
+
+    &__header {
+        background-color: vars.$neutral-color-2;
+        padding: 10px;
+        border-radius: 10px;
+        height: 100%;
+        min-height: 157px;
+
+        @media screen and (min-width: 769px) {
+            width: 350px;
+        }
+    }
+
+    &__avatar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px
+    }
+
+    &__avatarImage {
+        position: relative;
+        width: 60px;
+        height: 60px;
+    }
+
+    &__avatarImg {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+
+    &__action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: vars.$green-color;
+        padding: 0;
+        border-radius: 5px;
+        background-color: vars.$neutral-color-dark-2;
+        width: 24px;
+        height: 24px;
+
+        svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    &__avatarAdd {
+        position: absolute;
+        bottom: 1px;
+        right: 2px;
+        background-color: transparent;
+        width: 14px;
+        height: 14px;
+    }
+
+    &__name {
+        display: flex;
+        position: relative;
+        width: 100%;
+    }
+
+    &__nameInput {
+        background-color: transparent;
+        border: none;
+        color: vars.$text-color;
+        padding: 0;
+        font-size: 14px;
+        font-family: vars.$body-text;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__editLine {
+        position: absolute;
+        bottom: -2px;
+        background-color: vars.$green-color;
+        width: 0%;
+        height: 1px;
+        transition: width 0.2s ease-in-out;
+
+        &--active {
+            width: 100%;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        gap: 5px;
+        margin-top: 10px;
+        color: vars.$text-neutral;
+        line-height: 130%;
+        font-weight: 500;
+        font-size: clamp(13px, .7465rem + .2817vw, 16px);
+    }
+
+    &__infoValue {
+        color: vars.$text-color;
+    }
+
+    &__logout {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: vars.$text-color;
+        background-color: vars.$button-red-initial;
+        transition: background-color 0.2s ease-in-out;
+        height: 40px;
+        flex-shrink: 0;
+
+        &:hover {
+            background-color: vars.$button-red-hover;
+        }
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    &__accounts {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+
+        @media screen and (min-width: 481px) {
+            display: grid;
+            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        }
+
+        @media screen and (min-width: 769px) {
+            display: grid;
+            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+        }
+
+        @media screen and (min-width: 1201px) {
+            display: grid;
+            gap: 50px;
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+            padding-bottom: 30px;
+        }
+    }
+
+    &__account {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        text-align: left;
+        width: 100%;
+    }
+
+    &__accountLabel {
+        font-weight: 500;
+        line-height: 130%;
+        font-size: clamp(13px, .7465rem + .2817vw, 16px);
+    }
+
+    &__accountControl {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: vars.$card-background-2;
+        height: 55px;
+        gap: 10px;
+        padding: 10px 15px;
+        border-radius: 10px;
+    }
+
+    &__accountInput {
+        background-color: transparent;
+        border: none;
+        color: vars.$text-color;
+        font-size: 14px;
+        width: 100%;
+        font-weight: 500;
+        font-family: vars.$body-text;
+        padding: 0;
+
+        &::placeholder {
+            font-weight: 500;
+            color: vars.$text-neutral;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    &__accountButton {
+        padding: 0;
+        background-color: transparent;
+        color: vars.$green-color;
+        font-size: 14px;
+    }
+}
