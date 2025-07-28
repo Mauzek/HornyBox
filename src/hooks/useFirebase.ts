@@ -11,6 +11,7 @@ import {
   linkWithPopup,
   GithubAuthProvider,
   GoogleAuthProvider,
+  deleteUser,
 } from "firebase/auth";
 import { auth, googleProvider, githubProvider } from "../config/firebase";
 import { useState, useEffect, useRef } from "react";
@@ -36,6 +37,7 @@ interface UseFirebaseReturn {
   updateDisplayName: (displayName: string) => Promise<void>;
   linkWithGithub: () => Promise<User>;
   linkWithGoogle: () => Promise<User>;
+  deleteAccount: () => Promise<boolean>;
 
   clearError: () => void;
 }
@@ -329,6 +331,49 @@ export const useFirebase = (): UseFirebaseReturn => {
     }
   };
 
+  const deleteAccount = async (): Promise<boolean> => {
+    if (!auth.currentUser) {
+      if (isMountedRef.current) {
+        handleError(new Error("No user is currently signed in"));
+      }
+      return false;
+    }
+
+    setLoadingState(true);
+    setError(null);
+
+    try {
+      await deleteUser(auth.currentUser);
+
+      if (isMountedRef.current) {
+        dispatch(clearUser());
+      }
+
+      return true;
+    } catch (error: unknown) {
+      if (isAuthError(error)) {
+        if (error.code === "auth/requires-recent-login") {
+          if (isMountedRef.current) {
+            handleError(
+              new Error(
+                "Для удаления аккаунта необходима повторная авторизация. Пожалуйста, выйдите и войдите снова."
+              )
+            );
+          }
+        } else {
+          if (isMountedRef.current) {
+            handleError(error);
+          }
+        }
+      }
+      return false;
+    } finally {
+      if (isMountedRef.current) {
+        setLoadingState(false);
+      }
+    }
+  };
+
   const isAuthError = (error: unknown): error is AuthError => {
     return (
       typeof error === "object" &&
@@ -351,6 +396,7 @@ export const useFirebase = (): UseFirebaseReturn => {
     updateDisplayName,
     linkWithGithub,
     linkWithGoogle,
+    deleteAccount,
 
     clearError,
   };
