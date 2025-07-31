@@ -31,8 +31,7 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       }
       return type;
     };
-
-    console.log("render input");
+    
     return (
       <div className={styles.inputContainer}>
         <div

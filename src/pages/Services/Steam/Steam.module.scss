@@ -1,0 +1,364 @@
+@use '../../../styles/variables' as vars;
+
+.page {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    max-width: 1440px;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 45px;
+
+    @media (min-width: 640px) {
+        padding-top: 30px;
+    }
+
+    @media (min-width: 768px) {
+        grid-template-rows: repeat(1, minmax(0, 1fr));
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    &__container {
+        display: grid;
+        margin-bottom: 20px;
+        grid-column: 2 / 5;
+        grid-auto-flow: row;
+        gap: 30px;
+
+        @media screen and (width < 1124px) {
+            grid-column: span 6;
+        }
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    &__title {
+        font-size: clamp(1.5625rem, 1.4525rem + .4695vw, 1.875rem);
+        font-weight: 500;
+        line-height: 130%;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 15px;
+
+        @media (min-width: 400px) {
+            font-size: clamp(1.875rem, 1.765rem + .4695vw, 2.1875rem);
+        }
+
+        @media (min-width: 640px) {
+            font-size: clamp(2.1875rem, 2.0775rem + .4695vw, 2.5rem);
+        }
+    }
+
+    &__logo {
+        display: none;
+
+        @media (min-width: 640px) {
+            display: inline-block;
+        }
+
+        &--sm {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &__navigation {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+    }
+
+    &__navBtn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 20px;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        background-color: vars.$neutral-color-dark-2;
+        cursor: pointer;
+
+        &--active {
+            background-color: #111;
+            border-color: rgba(200, 255, 0, .13);
+
+            .page__navBtnText {
+                color: vars.$green-color;
+            }
+        }
+    }
+
+    &__navBtnLogo {
+        width: 20px;
+    }
+
+    &__navBtnText {
+        color: vars.$text-color;
+        font-size: clamp(13px, .7465rem + .2817vw, 16px);
+    }
+
+    &__paymentSection {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    &__paymentsWrapper {
+        display: grid;
+        grid-auto-flow: row;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+        grid-template-areas:
+            "login login"
+            "sum calc";
+
+        @media screen and (width < 660px) {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                "login"
+                "sum"
+                "calc";
+        }
+    }
+
+    &__errorMessage {
+        color: vars.$text-error;
+        text-align: left;
+        font-weight: 500;
+        line-height: 130%;
+        font-weight: 600;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out, max-height 0.2s ease-in-out;
+        will-change: opacity, max-height;
+        max-height: 0px;
+
+        &--visible {
+            max-height: 40px;
+            opacity: 1;
+            margin-top: 5px;
+            transform: translateY(0);
+        }
+    }
+
+    &__paymentWrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__paymentField {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 15px;
+        background-color: #1a1a1a;
+        border-radius: 10px;
+        min-height: 55px;
+        transition: border 0.2s ease-in-out;
+        border: 2px solid transparent;
+
+        &:nth-child(1) {
+            grid-area: login;
+
+            &:focus-within {
+                border: 2px solid vars.$green-color;
+            }
+        }
+
+        &:nth-child(2) {
+            grid-area: sum;
+
+            &:focus-within {
+                border-color: vars.$green-color;
+            }
+        }
+
+        &:nth-child(3) {
+            grid-area: calc;
+            padding: 0 15px;
+            height: 55px;
+        }
+
+        &--error {
+            border-color: vars.$text-error !important;
+        }
+    }
+
+    &__paymentInput {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        background-color: transparent;
+        font-family: vars.$body-text;
+        color: vars.$text-color;
+        font-weight: 500;
+        width: 100%;
+        padding: 0;
+
+        &:focus {
+            outline: none;
+        }
+
+        &::placeholder {
+            color: vars.$text-neutral
+        }
+    }
+
+    &__paymentBtn {
+        background-color: transparent;
+        color: vars.$text-color;
+        padding: 9px 0;
+    }
+
+    &__paymentTooltip {
+        position: relative;
+    }
+
+    &__paymentText {
+        font-size: 16px;
+        color: #555;
+
+        &--white {
+            color: vars.$text-color;          
+        }
+
+        &--title{
+            font-size: clamp(13px, .7465rem + .2817vw, 16px);
+        }
+
+        &--sm {
+            display: none;
+            font-size: 13px;
+
+            @media (min-width: 375px) {
+                display: inline-block;
+            }
+        }
+
+        &--bold {
+            font-weight: 500;
+        }
+    }
+
+    &__steamAmountWrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-right: auto;
+    }
+
+    &__paywallForm {
+        display: grid;
+        grid-auto-flow: row;
+        text-align: left;
+        gap: 10px;
+    }
+
+    &__paywallList {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+        gap: 15px;
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    &__paywallItem {
+        padding: 5px 20px;
+        color: vars.$text-neutral;
+        background-color: vars.$neutral-color-dark-4;
+        border: none;
+        border-radius: 10px;
+        height: 41px;
+        min-width: 88px;
+        cursor: pointer;
+        transition: color 0.15s ease-in-out;
+
+        &:hover {
+            color: vars.$text-color;
+        }
+    }
+
+    &__paymentsList {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: minmax(0, 1fr);
+
+        @media (min-width: 460px) {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+    }
+
+    &__paymentItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: vars.$text-color;
+        padding: 10px;
+        border: 2px solid transparent;
+        background-color: vars.$neutral-color-dark-2;
+        border-radius: 10px;
+        cursor: pointer;
+        padding: 0 20px 8px;
+
+        &--selected {
+            border-color: vars.$green-color;
+        }
+
+        &:hover {
+            background-color: #111;
+        }
+
+        .page__paymentText {
+            font-size: 13px;
+            color: vars.$text-color;
+        }
+    }
+
+    &__paymentLogo {
+        width: 60px;
+        height: 60px;
+        object-fit: contain;
+    }
+
+    &__submit {
+        padding: 12px 20px;
+        background-color: vars.$green-color ;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        height: 50px;
+
+        &:disabled {
+            background-color: vars.$button-disabled-background;
+            color: vars.$button-disabled-text;
+            cursor: not-allowed;
+        }
+    }
+
+    &__paywallText {
+        font-size: 14px;
+        color: #666;
+    }
+
+    &__favouriteHelper {
+        margin-top: 0;
+        margin-bottom: 10px;
+        padding-top: 0;
+
+        @media screen and (width < 640px) {
+            padding: 0 10px;
+        }
+    }
+}
