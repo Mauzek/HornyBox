@@ -1,10 +1,11 @@
 import { HelpTooltip } from "../HelpTooltip";
 import { Link } from "react-router-dom";
 import styles from "./FavouriteHelper.module.scss";
+import type { FavouriteHelperProps } from "./types";
 
-export const FavouriteHelper = () => {
+export const FavouriteHelper = ({className = '', style}: FavouriteHelperProps) => {
   return (
-    <div className={styles.support}>
+    <div className={`${styles.support} ${className}`} style={style}>
       <div className={styles.support__icon}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
