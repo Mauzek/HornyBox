@@ -12,6 +12,7 @@ import sadEmoji from './sad-emoji.svg';
 import services from './services-category.svg';
 import star from './star.svg';
 import steam from './steam-icon.svg';
+import steamLogo from './steam-logo.svg';
 import tBank from './t-bank.svg';
 import telegram from './tg-icon.svg';
 import videos from './videos-category.svg';
@@ -20,11 +21,15 @@ import vk from './vk-icon.svg';
 import Russia from './Russia-flag.svg';
 import Indonesia from './Indonesia-flag.svg';
 import Malaysia from './Malaysia-flag.svg';
+import Kazakhstan from './Kazakhstan-flag.svg';
+import Global from './Global-flag.svg';
 
 export const flags = {
     Russia,
     Indonesia,
     Malaysia,
+    Kazakhstan,
+    Global
 }
 
 export const icons = {
@@ -42,6 +47,7 @@ export const icons = {
     services,
     star,
     steam,
+    steamLogo,
     tBank,
     telegram,
     videos,
