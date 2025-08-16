@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./ItemCard.module.scss";
 import type { ItemCardProps } from "./types";
 
-/*
-  - сделать LazyLoadImage для картинок в карточках
-  - если время будет, обновить данные в API
-*/ 
+
 
 export const ItemCard: React.FC<ItemCardProps> = ({
   item,
