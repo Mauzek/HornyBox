@@ -4,7 +4,7 @@ import { useGetAssetsQuery } from "../../store";
 import styles from "./Layout.module.scss";
 import { usePreloader } from "../../hooks/usePreloader";
 import { useFirebase } from "../../hooks";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from '@vercel/analytics/react';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const { data, isLoading, isError } = useGetAssetsQuery();
